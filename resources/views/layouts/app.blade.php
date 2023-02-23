@@ -93,7 +93,7 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <a class="nav-link nav-link--active" href="{{ url('/') }}">Inicio</a>
+                <a class="nav-link" href="{{ url('/') }}">Inicio</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{{ url('/games') }}">Juegos</a>
@@ -114,5 +114,22 @@
           </div>
         </div>
       </nav>
+
+      <main class="main-content-view text-center text-lg-start d-flex align-items-center justify-content-center bg-dark">
+        @yield('content')
+      </main>
+
+      <footer class="bg-dark py-4 mt-auto">
+        <div class="container px-5">
+            <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; BitCritic 2023</div></div>
+                <div class="col-auto">
+                    <a class="link-light small" href="#!">Política de Privacidad</a>
+                    <span class="text-white mx-1">&middot;</span>
+                    <a class="link-light small" href="#!">Contacto</a>
+                </div>
+            </div>
+        </div>
+        </footer>
 </body>
 </html>
