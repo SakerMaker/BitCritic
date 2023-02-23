@@ -1,4 +1,5 @@
-window._ = require('lodash');
+import _ from "lodash";
+window._ = _;
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -8,7 +9,7 @@ window._ = require('lodash');
 
 import '@popperjs/core'
 
-const bootstrap = require('bootstrap')
+import * as bootstrap from "bootstrap"
 
 window.bootstrap = bootstrap
 
