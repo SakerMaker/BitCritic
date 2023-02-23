@@ -115,7 +115,7 @@
         </div>
       </nav>
 
-      <main class="main-content-view text-center text-lg-start d-flex align-items-center justify-content-center bg-dark">
+      <main class="main-content-view bg-dark">
         @yield('content')
       </main>
 
@@ -125,8 +125,13 @@
                 <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; BitCritic 2023</div></div>
                 <div class="col-auto">
                     <a class="link-light small" href="#!">Política de Privacidad</a>
-                    <span class="text-white mx-1">&middot;</span>
-                    <a class="link-light small" href="#!">Contacto</a>
+                    @guest
+                        
+                    @else
+                        <span class="text-white mx-1">&middot;</span>
+                        <a class="link-light small" href="{{ url("/logout")}}">Cerrar Sesión</a>
+                    @endguest
+                    
                 </div>
             </div>
         </div>

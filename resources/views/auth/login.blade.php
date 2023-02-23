@@ -61,7 +61,7 @@
                 </div>
 
                 <p class="m-0">
-                  <a href="signup.html">Aún no tengo cuenta</a>
+                  <a href="{{ url('/register') }}">Aún no tengo cuenta</a>
                 </p>
                 @if (Route::has('password.request'))
                     <a class="link-secondary" href="{{ route('password.request') }}">
