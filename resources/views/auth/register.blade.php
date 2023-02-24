@@ -81,7 +81,7 @@
                   <a href="{{ url("/login")}}">Ya tengo cuenta</a>
                 </p>
                 <p class="m-0 mt-4 mr-auto">
-                  <a href="index.html" class="bg-dark p-3 text-white btn text-decoration-none d-inline-block float-right" style="float:right;">Volver</a>
+                  <a href="{{ URL::previous() }}" class="bg-dark p-3 text-white btn text-decoration-none d-inline-block float-right" style="float:right;">Volver</a>
                 </p>
 
               </form>

@@ -93,18 +93,18 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <a class="nav-link" href="{{ url('/') }}">Inicio</a>
+                <a class="nav-link {{ (request()->is('/')) ? 'nav-link--active' : '' }}" href="{{ url('/') }}">Inicio</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ url('/games') }}">Juegos</a>
+                <a class="nav-link {{ (request()->is('/games')) ? 'nav-link--active' : '' }}" href="{{ url('/games') }}">Juegos</a>
               </li>
             @guest
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/login') }}">Iniciar Sesión</a>
+                    <a class="nav-link {{ trim(substr(request()->url(),-5))=='login' ? 'nav-link--active' : '' }}" href="{{ url('/login') }}">Iniciar Sesión</a>
                 </li>
             @else
               <li class="nav-item">
-                <a class="nav-link" href="#">Mi Perfil</a>
+                <a class="nav-link" href="{{url("/perfil"). "/" .Auth::id()}}">Mi Perfil</a>
               </li>
             @endguest
             @can('delete-users')
@@ -140,3 +140,4 @@
         </footer>
 </body>
 </html>
+

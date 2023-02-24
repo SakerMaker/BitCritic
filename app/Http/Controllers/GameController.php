@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
+use App\Models\Review;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class GameController
@@ -14,9 +16,11 @@ class GameController extends Controller
 
     public function index()
     {
-        $games = Game::paginate();
+        //$games = Game::select("*")->leftJoin("reviews","games.id","=","reviews.id_game")->orderBy("reviews.id_game","DESC")->paginate();
+        $games=Game::leftJoin("reviews","games.id","=","reviews.id_game")->select("games.id as id","games.title as title","games.description as description","games.image as image","games.fecha_salida as fecha_salida","games.genero as genero",DB::raw("count(reviews.id) as count"))->groupBy("games.id")->orderBy("count","desc")->paginate();
+        //$games = Game::paginate();
 
-        return view('game.index', compact('games'))
+        return view('games.index', compact('games'))
             ->with('i', (request()->input('page', 1) - 1) * $games->perPage());
     }
 

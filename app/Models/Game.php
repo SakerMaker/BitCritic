@@ -12,7 +12,9 @@ class Game extends Model
     static $rules = [
     ];
 
-    protected $perPage = 20;
+    protected $perPage = 4;
 
     protected $fillable = [];
+
+
 }
