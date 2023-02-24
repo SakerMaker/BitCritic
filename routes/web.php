@@ -17,7 +17,7 @@ use App\Http\Controllers\HomeController;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::view('/panel', 'panel')->middleware('can:create-users');
+Route::view('/panel', 'panel')->middleware("can:delete-user");
 Route::get('/logout', function ()
 {
     auth()->logout();
