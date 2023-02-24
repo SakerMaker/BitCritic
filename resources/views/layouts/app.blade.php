@@ -82,9 +82,9 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
           <a class="navbar-brand" href="{{ url('/') }}">
-            <img src="img/Logo Blanco.png" alt="Logo" width="100" height="100"
+            <img src="{{ url("img/Logo Blanco.png") }}" alt="Logo" width="100" height="100"
               class="d-inline-block align-text-top me-2 img-not-hover">
-            <img src="img/Logo-Blanco2.gif" alt="Logo" width="100" height="100" class="align-text-top me-2 img-hover">
+            <img src="{{ url("img/Logo-Blanco2.gif") }}" alt="Logo" width="100" height="100" class="align-text-top me-2 img-hover">
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -96,12 +96,19 @@
                 <a class="nav-link {{ (request()->is('/')) ? 'nav-link--active' : '' }}" href="{{ url('/') }}">Inicio</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {{ (request()->is('/games')) ? 'nav-link--active' : '' }}" href="{{ url('/games') }}">Juegos</a>
+                <a class="nav-link {{ str_contains(URL::current(),"games") ? 'nav-link--active' : '' }}" href="{{ url('/games') }}">Juegos</a>
               </li>
             @guest
+              @if (str_contains(URL::current(),"login"))
                 <li class="nav-item">
-                    <a class="nav-link {{ trim(substr(request()->url(),-5))=='login' ? 'nav-link--active' : '' }}" href="{{ url('/login') }}">Iniciar Sesión</a>
+                    <a class="nav-link {{ str_contains(URL::current(),"login") ? 'nav-link--active' : '' }}" href="{{ url('/login') }}">Iniciar Sesión</a>
                 </li>
+              @else
+              <li class="nav-item">
+                <a class="nav-link {{ str_contains(URL::current(),"register") ? 'nav-link--active' : '' }}" href="{{ url('/register') }}">Registrarse</a>
+                </li>
+              @endif
+                
             @else
               <li class="nav-item">
                 <a class="nav-link" href="{{url("/perfil"). "/" .Auth::id()}}">Mi Perfil</a>

@@ -14,7 +14,7 @@
             </div>
           </div>
         </div>
-        <div class="col-xl-5 col-xxl-6 d-xl-block text-center"><img class="img-fluid rounded-3 my-5" src="img/main1.png"
+        <div class="col-xl-5 col-xxl-6 d-xl-block text-center"><img class="img-fluid rounded-3 my-5" src="{{ url("img/main1.png") }}"
             alt="..." /></div>
       </div>
     </div>
