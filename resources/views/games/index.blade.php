@@ -24,12 +24,28 @@
       <div class="row gx-5 justify-content-center">
         <div class="col-lg-8 col-xl-6">
           <div class="text-center text-dark">
-            <h2 class="fw-bolder mb-5">Juegos</h2>
+            <h2 class="fw-bolder mb-5">Juegos Más Valorados</h2>
           </div>
         </div>
       </div>
       
       <div class="row gx-5">
+        <div class="mt-1 mb-4">
+              <form action="{{ route('games.search') }}" method="GET">
+                  
+
+                  
+                <div class="flex form-outline mb-4 form-floating col-lg-3 col-md-9 ms-auto">
+                  <input class="form-control bg-white" type="text" placeholder="Búsqueda..." name="s">
+                  <label class="form-check-label mb-4" for="search">
+                    {{ __('Búsqueda...') }}
+                  </label>
+                  <button type="submit" class="btn btn-primary mb-4 p-2 d-block ms-auto">
+                    {{ __('Buscar') }}
+                  </button>
+                </div>
+              </form>
+        </div>
       {{-- @foreach ($games as $game)
           {{$game}}
       @endforeach --}}

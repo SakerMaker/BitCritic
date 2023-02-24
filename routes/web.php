@@ -21,7 +21,8 @@ use Illuminate\Support\Facades\Redirect;
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/games', [GameController::class, 'index'])->name('games');
+Route::get('/games', [GameController::class,'index'])->name('games');
+Route::get('/games/search', [GameController::class,'search'])->name('games.search');
 Route::get('/panel', [PanelController::class, 'index'])->name('panel')->middleware("admin");
 Route::get('/logout', function ()
 {
