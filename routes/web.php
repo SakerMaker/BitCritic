@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PanelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +17,8 @@ use App\Http\Controllers\HomeController;
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::view('/panel', 'panel')->middleware("can:delete-user");
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/panel', [PanelController::class, 'index'])->middleware('can:delete-user');
 Route::get('/logout', function ()
 {
     auth()->logout();
