@@ -107,9 +107,11 @@
                 <a class="nav-link" href="#">Mi Perfil</a>
               </li>
             @endguest
-              <li class="nav-item">
-                <a class="nav-link" href="{{ url('/panel') }}">Panel Administración</a>
-              </li>
+            @can('delete-users')
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('/panel') }}">Panel Administración</a>
+            </li>
+            @endcan
             </ul>
           </div>
         </div>
