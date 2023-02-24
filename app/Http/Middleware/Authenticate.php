@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use App\Models\Model_has_role;
+use App\Models\User;
 
 class Authenticate extends Middleware
 {

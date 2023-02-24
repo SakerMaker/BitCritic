@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PanelController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +20,7 @@ use App\Http\Controllers\PanelController;
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/panel', [PanelController::class, 'index'])->middleware('can:delete-user');
+Route::get('/panel', [PanelController::class, 'index'])->middleware("admin");
 Route::get('/logout', function ()
 {
     auth()->logout();

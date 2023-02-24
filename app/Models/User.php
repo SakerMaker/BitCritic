@@ -45,4 +45,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     
+    // public function isAdmin() {
+    //     $user = Model_has_role::where(['role_id', '=', User::get('id')],['model_id', '= 1']);
+    //     if ($user === null) {
+    //         return false;
+    //     } else {
+    //         return true;
+    //     }
+    // }
 }
