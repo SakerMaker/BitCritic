@@ -116,7 +116,7 @@
             @endguest
             @can('delete-users')
             <li class="nav-item">
-              <a class="nav-link" href="{{ url('/panel') }}">Panel Administración</a>
+              <a class="nav-link {{ str_contains(URL::current(),"panel") ? 'nav-link--active' : '' }}" href="{{ url('/panel') }}">Panel Administración</a>
             </li>
             @endcan
             </ul>

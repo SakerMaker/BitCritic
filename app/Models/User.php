@@ -55,4 +55,19 @@ class User extends Authenticatable
     //         return true;
     //     }
     // }
+
+    public function review()
+    {
+        return $this->hasMany('App\Models\Review', 'id_user', 'id');
+    }
+
+    public function comment()
+    {
+        return $this->hasMany('App\Models\Comment', 'id_user', 'id');
+    }
+
+    public function like()
+    {
+        return $this->hasMany('App\Models\Like', 'id_user', 'id');
+    }
 }

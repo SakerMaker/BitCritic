@@ -10,11 +10,19 @@ class Game extends Model
     use HasFactory;
 
     static $rules = [
+		'title' => 'required',
+		'description' => 'required',
+        'image' => 'required',
+        'fecha_salida' => 'required',
+        'genero' => 'required',
     ];
 
     protected $perPage = 4;
 
-    protected $fillable = [];
+    protected $fillable = ['title','description','image','fecha_salida','genero'];
 
-
+    public function review()
+    {
+        return $this->hasMany('App\Models\Review', 'id_game', 'id');
+    }
 }

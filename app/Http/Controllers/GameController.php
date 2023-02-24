@@ -20,7 +20,15 @@ class GameController extends Controller
         $games=Game::leftJoin("reviews","games.id","=","reviews.id_game")->select("games.id as id","games.title as title","games.description as description","games.image as image","games.fecha_salida as fecha_salida","games.genero as genero",DB::raw("count(reviews.id) as count"))->groupBy("games.id")->orderBy("count","desc")->paginate();
         //$games = Game::paginate();
 
-        return view('games.index', compact('games'))
+        return view('game.index', compact('games'))
+            ->with('i', (request()->input('page', 1) - 1) * $games->perPage());
+    }
+
+    public function resultados()
+    {
+        $games= Game::paginate(5);
+
+        return view('game.resultados', compact('games'))
             ->with('i', (request()->input('page', 1) - 1) * $games->perPage());
     }
 
@@ -30,7 +38,7 @@ class GameController extends Controller
         $games=Game::leftJoin("reviews","games.id","=","reviews.id_game")->select("games.id as id","games.title as title","games.description as description","games.image as image","games.fecha_salida as fecha_salida","games.genero as genero",DB::raw("count(reviews.id) as count"))->where("games.title","LIKE","%".$request->s."%")->groupBy("games.id")->orderBy("count","desc")->paginate();
         //$games = Game::paginate();
 
-        return view('games.index', compact('games'))
+        return view('game.index', compact('games'))
             ->with('i', (request()->input('page', 1) - 1) * $games->perPage());
     }
 
@@ -46,7 +54,7 @@ class GameController extends Controller
 
         $game = Game::create($request->all());
 
-        return redirect()->route('games.index')
+        return redirect()->route('games.resultados')
             ->with('success', 'Game created successfully.');
     }
 
@@ -56,6 +64,7 @@ class GameController extends Controller
 
         return view('game.show', compact('game'));
     }
+
 
     public function edit($id)
     {
@@ -70,7 +79,7 @@ class GameController extends Controller
 
         $game->update($request->all());
 
-        return redirect()->route('games.index')
+        return redirect()->route('games.resultados')
             ->with('success', 'Game updated successfully');
     }
 
@@ -78,7 +87,7 @@ class GameController extends Controller
     {
         $game = Game::find($id)->delete();
 
-        return redirect()->route('games.index')
+        return redirect()->route('games.resultados')
             ->with('success', 'Game deleted successfully');
     }
 }

@@ -31,3 +31,11 @@ Route::get('/logout', function ()
 
     return Redirect::to('/');
 })->name('logout');
+
+Route::get('games/resultados', [GameController::class,'resultados'])->name('games.resultados');
+Route::get('games/create', [GameController::class,'create'])->name('games.create');
+Route::delete('games/destroy/{game}', [GameController::class,'destroy'])->name('games.destroy');
+Route::get('games/show/{game}', [GameController::class,'show'])->name('games.show');
+Route::get('games/edit/{game}', [GameController::class,'edit'])->name('games.edit');
+Route::put('games/update/{game}', [GameController::class,'update'])->name('games.update');
+Route::post('games/store', [GameController::class,'store'])->name('games.store');
