@@ -20,6 +20,9 @@ class UserSeeder extends Seeder
         //Creacion de 50 cabros(contraseña="jejejeje") y 1 admin(contraseña="adminXDXD")
         $admin=User::create(['name'=>"admin",'email'=>"admin@gmail.com",'password'=>Hash::make("adminXDXD"),'profile_photo_path'=>'/xd/xd.png', 'about_you'=>"besto di pesto"]);
         $admin->assignRole('Admin');
-        User::factory(50)->create();
+        $usuarios=User::factory(50)->create();
+        for($i=0;$i<count($usuarios);$i++){
+            $usuarios[$i]->assignRole('User');
+        }
     }
 }
