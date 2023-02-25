@@ -37,7 +37,7 @@
                         <div class="flex-shrink-0"><img class="rounded-circle" src="{{ url($single_review[0]->profile_photo_path) }}" alt="..." style="width:50px"/></div>
                         <div class="ms-3">
                         
-                            <div class="fw-bold">{{$single_review[0]->review_title}} &middot; by {{$single_review[0]->name}} &middot; {{substr($single_review[0]->created_at,0,10)}}</div>
+                            <div class="fw-bold"><span class="fw-bolder">{{$single_review[0]->review_title}}</span> &middot; by {{$single_review[0]->name}} &middot; {{substr($single_review[0]->created_at,0,10)}}</div>
                             {{$single_review[0]->review_content}}<br>
                             
                         
