@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Review;
+use App\Models\User;
+use App\Models\Game;
 use Illuminate\Http\Request;
 
 /**
@@ -23,8 +25,10 @@ class ReviewController extends Controller
    
     public function create()
     {
+        $allGames = Game::all();
+        $allUsers = User::all();
         $review = new Review();
-        return view('review.create', compact('review'));
+        return view('review.create', compact('review','allUsers','allGames'));
     }
 
     
@@ -49,8 +53,9 @@ class ReviewController extends Controller
     public function edit($id)
     {
         $review = Review::find($id);
-
-        return view('review.edit', compact('review'));
+        $allGames = Game::all();
+        $allUsers = User::all();
+        return view('review.edit', compact('review','allGames','allUsers'));
     }
 
     public function update(Request $request, Review $review)

@@ -38,8 +38,9 @@
                                         
 										<th>Name</th>
                                         <th>Email</th>
-                                        <th>Password</th>
+                                        <th>Location</th>
                                         <th>Profile photo path</th>
+                                        <th>Banner photo path</th>
                                         <th>About you</th>
 
                                         <th></th>
@@ -52,8 +53,9 @@
                                             
 											<td>{{ $user->name }}</td>
 											<td>{{ $user->email }}</td>
-                                            <td>{{ $user->password }}</td>
+                                            <td>{{ $user->location }}</td>
                                             <td>{{ $user->profile_photo_path }}</td>
+                                            <td>{{ $user->banner_photo_path }}</td>
                                             <td>{{ $user->about_you }}</td>
 
                                             <td>

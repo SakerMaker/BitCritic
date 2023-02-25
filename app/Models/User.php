@@ -22,7 +22,9 @@ class User extends Authenticatable
         'name' => 'required',
 		'email' => 'required',
         'password' => 'required',
+        'location' => 'required',
         'profile_photo_path' => 'required',
+        'banner_photo_path' => 'required',
         'about_you' => 'required',
     ];
    
@@ -31,7 +33,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'location',
         'profile_photo_path',
+        'banner_photo_path',
         'about_you'
     ];
 

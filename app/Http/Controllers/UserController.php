@@ -33,7 +33,7 @@ class UserController extends Controller
         request()->validate(User::$rules);
         $request['password']=Hash::make($request->password);
         $user = User::create($request->all());
-        
+        $user->assignRole('User');
         return redirect()->route('users.index')
              ->with('success', 'User created successfully.');
     }

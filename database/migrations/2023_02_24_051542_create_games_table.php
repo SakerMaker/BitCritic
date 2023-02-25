@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('image');
-            $table->timestamp('fecha_salida');
+            $table->date('fecha_salida');
             $table->string('genero');
             $table->timestamps();
         });

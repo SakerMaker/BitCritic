@@ -25,7 +25,9 @@ class UserFactory extends Factory
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'profile_photo_path' => "/xd/xd.png",
+            'location' => fake()->state(),
+            'profile_photo_path' => "img/profileDefault.png",
+            'banner_photo_path' => "img/bannerDefault.png",
             'about_you' => "besto di pesto",
             'password' => Hash::make("jejejeje"), // password
             'remember_token' => Str::random(10),

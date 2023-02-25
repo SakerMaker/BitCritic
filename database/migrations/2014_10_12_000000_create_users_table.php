@@ -19,8 +19,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            //current team id no lo puse pq no sabia que era XD
+            $table->string('location');
             $table->string('profile_photo_path')->nullable();
+            $table->string('banner_photo_path')->nullable();
             $table->string('about_you')->nullable();
             $table->rememberToken();
             $table->timestamps();

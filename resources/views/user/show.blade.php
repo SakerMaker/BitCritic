@@ -29,12 +29,16 @@
                             {{ $user->email }}
                         </div>
                         <div class="form-group">
-                            <strong>Password:</strong>
-                            {{ $user->password }}
+                            <strong>Location:</strong>
+                            {{ $user->location }}
                         </div>
                         <div class="form-group">
                             <strong>Profile photo path:</strong>
                             {{ $user->profile_photo_path }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Banner photo path:</strong>
+                            {{ $user->banner_photo_path }}
                         </div>
                         <div class="form-group">
                             <strong>About you:</strong>
