@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ 'Show Comment' }}
+    Panel Comentario
 @endsection
 
 @section('content')

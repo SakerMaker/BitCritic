@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    User
+    Panel Usuarios
 @endsection
 
 @section('content')

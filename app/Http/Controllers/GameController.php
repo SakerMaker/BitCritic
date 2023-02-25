@@ -24,11 +24,11 @@ class GameController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * $games->perPage());
     }
 
-    public function resultados()
+    public function panelIndex()
     {
         $games= Game::paginate(5);
 
-        return view('game.resultados', compact('games'))
+        return view('game.panelIndex', compact('games'))
             ->with('i', (request()->input('page', 1) - 1) * $games->perPage());
     }
 

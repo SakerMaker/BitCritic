@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ $review->title ?? 'Show Review' }}
+    Review - {{ $review->title }}
 @endsection
 
 @section('content')

@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('template_title')
+    Inicio
+@endsection
+
 @section('content')
 
 <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">

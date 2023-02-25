@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Create Game
+    Crear Juego
 @endsection
 
 @section('content')

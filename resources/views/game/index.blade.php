@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('template_title')
+    Juegos
+@endsection
+
 @section('content')
 
 <header class="bg-dark py-5">

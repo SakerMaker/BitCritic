@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Update Comment
+    Editar Comentario
 @endsection
 
 @section('content')

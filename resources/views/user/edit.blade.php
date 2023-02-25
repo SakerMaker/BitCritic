@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    User Game
+    Editar Usuario
 @endsection
 
 @section('content')

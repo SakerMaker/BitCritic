@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Create Review
+    Crear Review
 @endsection
 
 @section('content')

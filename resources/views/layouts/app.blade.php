@@ -7,14 +7,14 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'BitCritic - Video Game Reviewing Community') }}</title>
+    <title>{{ config('app.name', 'BitCritic - Video Game Reviewing Community') }} - @yield('template_title')</title>
 
     <!-- Fonts -->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -106,20 +106,26 @@
               @endif
 
             @guest
-              @if (str_contains(URL::current(),"login"))
+              @if (str_contains(URL::current(),"login") || !(str_contains(URL::current(),"register")))
                 <li class="nav-item">
                     <a class="nav-link {{ str_contains(URL::current(),"login") ? 'nav-link--active' : '' }}" href="{{ url('/login') }}">Iniciar Sesión</a>
                 </li>
               @else
-              <li class="nav-item">
-                <a class="nav-link {{ str_contains(URL::current(),"register") ? 'nav-link--active' : '' }}" href="{{ url('/register') }}">Registrarse</a>
-                </li>
+                  <li class="nav-item">
+                    <a class="nav-link {{ str_contains(URL::current(),"register") ? 'nav-link--active' : '' }}" href="{{ url('/register') }}">Registrarse</a>
+                    </li>
               @endif
                 
             @else
+              @if (isset($user) && Auth::id()==$user->id)
+              <li class="nav-item">
+                <a class="nav-link nav-link--active" href="{{url("/perfil"). "/" .Auth::id()}}">Mi Perfil</a>
+              </li>
+              @else 
               <li class="nav-item">
                 <a class="nav-link" href="{{url("/perfil"). "/" .Auth::id()}}">Mi Perfil</a>
               </li>
+              @endif
             @endguest
             @can('delete-users')
             <li class="nav-item">

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ $game->title ?? 'Show Game' }}
+    Juego - {{ $game->title }}
 @endsection
 
 @section('content')
@@ -14,7 +14,7 @@
                             <span class="card-title">Show Game</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('games.resultados') }}"> Back</a>
+                            <a class="btn btn-primary" href="{{ route('games.panelIndex') }}"> Back</a>
                         </div>
                     </div>
 
