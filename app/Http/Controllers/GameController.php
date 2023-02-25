@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use App\Models\Review;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -40,6 +41,18 @@ class GameController extends Controller
 
         return view('game.index', compact('games'))
             ->with('i', (request()->input('page', 1) - 1) * $games->perPage());
+    }
+
+    public function game($id)
+    {
+        $games=Game::find($id);
+        $reviews=$games->review()->paginate();
+        $users=array();
+        foreach ($reviews as $single_review) {
+            $users[]=User::leftJoin("reviews","users.id","=","reviews.id_user")->select("users.id as id","users.name as name","users.profile_photo_path as profile_photo_path","reviews.id as id_review","reviews.title as review_title","reviews.content as review_content","reviews.created_at as created_at","reviews.updated_at as updated_at")->where("reviews.id_game","=",$id)->groupBy("users.id")->get();
+        }
+        $review=$games->review()->count();
+        return view('game.game', compact('games'))->with("review",$review)->with("reviews",$users);
     }
 
     public function create()

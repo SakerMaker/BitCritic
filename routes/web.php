@@ -28,6 +28,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/games', [GameController::class,'index'])->name('games.index');
 Route::get('/games/search', [GameController::class,'search'])->name('games.search');
+Route::get('/games/{game}', [GameController::class,'game'])->name('games.game');
 
 Route::get('/perfil/{perfil}', [PerfilController::class,'show'])->name('perfil.index');
 Route::get('/perfil/{perfil}/edit', [PerfilController::class,'edit'])->name('perfilEdit')->middleware("userprofile");

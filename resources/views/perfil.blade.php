@@ -23,19 +23,23 @@
               @endif
               </div>
               <div class="ms-3" style="margin-top: 130px;">
-                <h5>Usuario</h5>
+                <h5>{{$user->name}}</h5>
                 <p><i class="bi bi-geo-alt-fill"></i> España</p>
               </div>
             </div>
             <div class="p-4 text-black" style="background-color: #f8f9fa;">
               <div class="d-flex justify-content-end text-center py-1">
                 <div>
-                  <p class="mb-1 h5">0</p>
+                  <p class="mb-1 h5">{{$reviews}}</p>
                   <p class="small text-muted mb-0">Reviews</p>
                 </div>
-                <div class="px-3">
-                  <p class="mb-1 h5">0</p>
+                <div class="ps-3">
+                  <p class="mb-1 h5">{{$like}}</p>
                   <p class="small text-muted mb-0">Likes</p>
+                </div>
+                <div class="px-3">
+                  <p class="mb-1 h5">{{$comment}}</p>
+                  <p class="small text-muted mb-0">Comentarios</p>
                 </div>
               </div>
             </div>
@@ -43,9 +47,7 @@
               <div class="mb-5">
                 <p class="lead fw-normal mb-1">Sobre Mí</p>
                 <div class="p-4" style="background-color: #f8f9fa;">
-                  <p class="font-italic mb-1">Web Developer</p>
-                  <p class="font-italic mb-1">Lives in New York</p>
-                  <p class="font-italic mb-0">Photographer</p>
+                  <p class="font-italic mb-1">{{$user->about_you}}</p>
                 </div>
               </div>
               <div class="d-flex justify-content-between align-items-center mb-4">
