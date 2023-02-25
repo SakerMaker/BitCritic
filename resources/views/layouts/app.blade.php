@@ -95,9 +95,16 @@
               <li class="nav-item">
                 <a class="nav-link {{ (request()->is('/')) ? 'nav-link--active' : '' }}" href="{{ url('/') }}">Inicio</a>
               </li>
+              @if (request()->is('games') || request()->is('games/search'))
               <li class="nav-item">
-                <a class="nav-link {{ str_contains(URL::current(),"games") ? 'nav-link--active' : '' }}" href="{{ url('/games') }}">Juegos</a>
+                <a class="nav-link nav-link--active" href="{{ url('/games') }}">Juegos</a>
               </li>
+              @else
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url('/games') }}">Juegos</a>
+              </li>
+              @endif
+
             @guest
               @if (str_contains(URL::current(),"login"))
                 <li class="nav-item">

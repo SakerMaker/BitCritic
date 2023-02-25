@@ -14,7 +14,7 @@ class ReviewController extends Controller
   
     public function index()
     {
-        $reviews = Review::paginate();
+        $reviews = Review::paginate(5);
 
         return view('review.index', compact('reviews'))
             ->with('i', (request()->input('page', 1) - 1) * $reviews->perPage());
