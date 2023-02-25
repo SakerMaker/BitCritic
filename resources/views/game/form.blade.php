@@ -13,10 +13,15 @@
             {!! $errors->first('description', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
-        <div class="form-group">
+        {{-- <div class="form-group"><br>
             {{ Form::label('image') }}
-            {{ Form::text('image', $game->image, ['class' => 'form-control' . ($errors->has('image') ? ' is-invalid' : ''), 'placeholder' => 'Image']) }}
+            {{ Form::file('image', $game->image, ['class' => 'form-control' . ($errors->has('image') ? ' is-invalid' : ''), 'placeholder' => 'Image']) }}
             {!! $errors->first('image', '<div class="invalid-feedback">:message</div>') !!}
+        </div><br> --}}
+        <div class="form-group {{ $errors->has('image') ? 'has-error' : '' }}">
+            <label for="image">Image</label>
+            <input type="file" name="image" class="form-control">
+            <span class="text-danger">{{ $errors->first('image') }}</span>
         </div>
 
         <div class="form-group">

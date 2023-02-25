@@ -52,10 +52,22 @@ class GameController extends Controller
     {
         request()->validate(Game::$rules);
 
-        $game = Game::create($request->all());
+        $datos=$request->all();
+        
+        if($request->hasFile('image')){
+            $file=$request['image'];
+            $destinationPath="img/";
+            $filename=time() . "-" . $file->getClientOriginalName();
+            $uploadSuccess= $request['image']->move($destinationPath, $filename);
+            $datos['image']=$destinationPath . $filename;
+        }else{
+            $datos['image']="img/j-sin-foto.png";
+        }
+;
+        $game = Game::create($datos);
 
-        return redirect()->route('games.resultados')
-            ->with('success', 'Game created successfully.');
+         return redirect()->route('games.panelIndex')
+             ->with('success', 'Game created successfully.');
     }
 
     public function show($id)
@@ -77,17 +89,32 @@ class GameController extends Controller
     {
         request()->validate(Game::$rules);
 
-        $game->update($request->all());
+        $datos=$request->all();
 
-        return redirect()->route('games.resultados')
+        if($request->hasFile('image')){
+            $file=$request['image'];
+            $destinationPath="img/";
+            $filename=time() . "-" . $file->getClientOriginalName();
+            $uploadSuccess= $request['image']->move($destinationPath, $filename);
+            $datos['image']=$destinationPath . $filename;
+        }
+
+        $game->update($datos);
+
+        return redirect()->route('games.panelIndex')
             ->with('success', 'Game updated successfully');
     }
 
     public function destroy($id)
     {
-        $game = Game::find($id)->delete();
+        $game=Game::find($id);
+        if($game['image']!="img/j-sin-foto.png"){
+            unlink($game['image']);
+        }
 
-        return redirect()->route('games.resultados')
+        $game->delete();
+
+        return redirect()->route('games.panelIndex')
             ->with('success', 'Game deleted successfully');
     }
 }
