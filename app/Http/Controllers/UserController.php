@@ -34,6 +34,7 @@ class UserController extends Controller
         $request['password']=Hash::make($request->password);
         $user = User::create($request->all());
         $user->assignRole('User');
+
         return redirect()->route('users.index')
              ->with('success', 'User created successfully.');
     }
@@ -49,16 +50,20 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-
-        return view('user.edit', compact('user'));
+        $edit=True;
+        return view('user.edit', compact('user','edit'));
     }
 
     public function update(Request $request, User $user)
     {
         request()->validate(User::$rules);
-
+        
+        if($request['password']!=$user->password){
+            $request['password']=Hash::make($request->password);
+        }
+        
         $user->update($request->all());
-
+        
         return redirect()->route('users.index')
             ->with('success', 'User updated successfully');
     }

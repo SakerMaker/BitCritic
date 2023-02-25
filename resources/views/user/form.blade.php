@@ -19,11 +19,23 @@
             {{ Form::text('password', $user->password, ['class' => 'form-control' . ($errors->has('password') ? ' is-invalid' : ''), 'placeholder' => 'Password']) }}
             {!! $errors->first('password', '<div class="invalid-feedback">:message</div>') !!}
         </div>
+        
+        <div class="form-group">
+            {{ Form::label('location') }}
+            {{ Form::text('location', $user->location, ['class' => 'form-control' . ($errors->has('location') ? ' is-invalid' : ''), 'placeholder' => 'Location photo path']) }}
+            {!! $errors->first('location', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
 
         <div class="form-group">
             {{ Form::label('profile_photo_path') }}
             {{ Form::text('profile_photo_path', $user->profile_photo_path, ['class' => 'form-control' . ($errors->has('profile_photo_path') ? ' is-invalid' : ''), 'placeholder' => 'Profile photo path']) }}
             {!! $errors->first('profile_photo_path', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+
+        <div class="form-group">
+            {{ Form::label('banner_photo_path') }}
+            {{ Form::text('banner_photo_path', $user->banner_photo_path, ['class' => 'form-control' . ($errors->has('banner_photo_path') ? ' is-invalid' : ''), 'placeholder' => 'Banner photo path']) }}
+            {!! $errors->first('banner_photo_path', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
         <div class="form-group">
