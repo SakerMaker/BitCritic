@@ -60,7 +60,6 @@
                   <div style="position:relative;overflow:hidden;padding-bottom:100%;">
                     <img class="img img-responsive full-width" style="position:absolute;width:100%;" src="{{url($game->image)}}" alt="..." />
                   </div>
-                  <p style="font-size:0px">localizador</p>
                   <div class="card-body p-4">
                     <div class="badge bg-primary bg-gradient rounded-pill mb-2">{{ $game->genero }}</div>
                     <a class="text-decoration-none link-dark stretched-link" href="#!">
@@ -86,7 +85,6 @@
                 </div>
               </div>
         @endforeach
-        
         {!! $games->links() !!}
       <div>
       
