@@ -105,11 +105,14 @@
                         
                             <div class="fw-bold">Comentario &middot; by <a href={{url("/perfil/".$user_comment[0]->id)}}>{{$user_comment[0]->name}}</a> &middot; {{substr($user_comment[0]->created_at,0,10)}}</div>
                             <p>{{$user_comment[0]->comment_content}}</p>
-                            <form action="{{ route('comments.destroy',$user_comment[0]->id_commnent) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="text-white btn btn-secondary" style="float:right!important;"><i class="fa fa-fw fa-trash"></i> Borrar Comentario</button>
-                            </form>
+                            @if ($user_comment[0]->id==Auth::id())
+                                <form action="{{ route('comments.destroy',$user_comment[0]->id_commnent) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-white btn btn-secondary" style="float:right!important;"><i class="fa fa-fw fa-trash"></i> Borrar Comentario</button>
+                                </form>
+                            @else
+                            @endif
                             <br>
                         
                         </div>
