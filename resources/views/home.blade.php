@@ -90,8 +90,8 @@
       <div class="row gx-5">
       @foreach ($games as $game)
       <div class="col-lg-4 mb-5">
-        <a href="{{url("/games") . "/" .$game->id}}" class="fill-div-link"></a>
         <div class="card h-100 shadow border-0">
+          <a href="{{url("/games") . "/" .$game->id}}" class="fill-div-link"></a>
           <img class="card-img-top" src="{{url("$game->image")}}" alt="..." />
           <div class="card-body p-4">
             <div class="badge bg-primary bg-gradient rounded-pill mb-2">{{$game->genero}}</div>
