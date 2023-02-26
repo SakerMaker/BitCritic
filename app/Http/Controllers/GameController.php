@@ -46,13 +46,14 @@ class GameController extends Controller
     public function game($id)
     {
         $games=Game::find($id);
-        $reviews=$games->review()->paginate();
+        $reviews=Review::all()->where("id_game","=",$id);
         $users=array();
         foreach ($reviews as $single_review) {
-            $users[]=User::leftJoin("reviews","users.id","=","reviews.id_user")->select("users.id as id","users.name as name","users.profile_photo_path as profile_photo_path","reviews.id as id_review","reviews.title as review_title","reviews.content as review_content","reviews.created_at as created_at","reviews.updated_at as updated_at")->where("reviews.id_game","=",$id)->groupBy("users.id")->get();
+            $users[]=User::join("reviews","users.id","=","reviews.id_user")->select("users.id as id","users.name as name","users.profile_photo_path as profile_photo_path","reviews.id as id_review","reviews.title as review_title","reviews.content as review_content","reviews.created_at as created_at","reviews.updated_at as updated_at")->where("reviews.id","=",$single_review->id)->groupBy("users.id")->get();
         }
+        $related_games=Game::select("*")->where("genero","=",$games->genero)->where("id","!=",$id)->paginate(4);
         $review=$games->review()->count();
-        return view('game.game', compact('games'))->with("review",$review)->with("reviews",$users);
+        return view('game.game', compact('games'))->with("review",$review)->with("reviews",$users)->with("related",$related_games);
     }
 
     public function create()

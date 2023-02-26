@@ -59,7 +59,10 @@
                 
                 <div class="card shadow border-0"  style="min-height:450px;">
                   <a href="{{url("/games") . "/" .$game->id}}" class="fill-div-link"></a>
-                  <img class="card-img-top" src="https://dummyimage.com/600x350/ced4da/6c757d" alt="..." />
+                  <div style="position:relative;overflow:hidden;padding-bottom:100%;">
+                    <img class="img img-responsive full-width" style="position:absolute;width:100%;" src="{{$game->image}}" alt="..." />
+                  </div>
+                  
                   <div class="card-body p-4">
                     <div class="badge bg-primary bg-gradient rounded-pill mb-2">{{ $game->genero }}</div>
                     <a class="text-decoration-none link-dark stretched-link" href="#!">

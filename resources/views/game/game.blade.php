@@ -10,7 +10,7 @@
         <div class="row gx-4 gx-lg-5 align-items-center text-white">
             <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{{ url($games->image)}}" alt="..." /></div>
             <div class="col-md-6">
-              <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
+              <div class="badge bg-primary bg-gradient rounded-pill mb-2">{{$games->genero}}</div>
                 <h1 class="display-5 fw-bolder">{{$games->title}}</h1>
                 <div class="fs-5 mb-5">
                     <span>&middot; {{$review}} reviews</span>
@@ -25,13 +25,28 @@
             </div>
         </div>
         <section id="reviews">
-          <h1 class="text-white mt-5">Reviews</h1>
+            <h1 class="text-white mt-5 mb-4">Escribe tu Review</h1>
           <div class="card bg-light">
-              <div class="card-body text-dark p-5">
+            
+              <div class="card-body text-dark p-5 ">
                   <!-- Comment form-->
-                  <form class="mb-4"><textarea class="form-control" rows="3" placeholder="Escribe tu review"></textarea></form>
+                  @includeif('partials.errors')
+                  <form method="POST" action="{{ route('reviews.store') }}"  role="form" class="mb-4" enctype="multipart/form-data">
+                    @csrf
+
+                    {{ Form::hidden('id_game', $games->id) }}
+                    {{ Form::hidden('id_user', Auth::id()) }}
+                    {{ Form::text('title', "", ['class' => 'form-control mb-4' . ($errors->has('title') ? ' is-invalid' : ''), 'placeholder' => 'Título de la Review']) }}
+                    {!! $errors->first('title', '<div class="invalid-feedback">:message</div>') !!}
+                    {{ Form::textarea('content', "", ['class' => 'form-control mb-4' . ($errors->has('content') ? ' is-invalid' : ''), 'placeholder' => 'Escribe tu review']) }}
+                    {!! $errors->first('content', '<div class="invalid-feedback">:message</div>') !!}
+                    
+                    <button type="submit" class="btn btn-lg btn-primary mt-4 mb-4">Escribir review</button>
+                </form>
+                <h1 class="text-dark mt-5 mb-4">Reviews</h1>
                   <!-- Comment with nested comments-->
                   @foreach ($reviews as $single_review)
+                    
                     <div class="d-flex mb-4">
                         <!-- Parent comment-->
                         <div class="flex-shrink-0"><img class="rounded-circle" src="{{ url($single_review[0]->profile_photo_path) }}" alt="..." style="width:50px"/></div>
@@ -56,83 +71,37 @@
 <section class="py-5 bg-light">
     <div class="container px-4 px-lg-5 mt-5">
         <h2 class="fw-bolder mb-4">Juegos Relacionados</h2>
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-start">
+            @foreach ($related as $related_game)
             <div class="col mb-5">
                 <div class="card h-100">
                     <!-- Product image-->
-                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                    <img class="card-img-top" src="{{ url($related_game->image) }}" alt="..." />
                     <!-- Product details-->
                     <div class="card-body p-4">
                         <div class="text-center">
                             <!-- Product name-->
-                            <h5 class="fw-bolder">Fancy Product</h5>
+                            <h5 class="fw-bolder">{{ $related_game->title }}</h5>
                             <!-- Product price-->
-                            Estrellas
+                           
+                            @if (strlen($related_game->description)>100)
+                                {{substr($related_game->description,-100)}}...
+                            @else
+                                {{$related_game->description}}
+                            @endif
                         </div>
                     </div>
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Ver Juego</a></div>
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{url("/games/".$related_game->id)}}">Ver Juego</a></div>
                     </div>
                 </div>
             </div>
-            <div class="col mb-5">
-              <div class="card h-100">
-                  <!-- Product image-->
-                  <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                  <!-- Product details-->
-                  <div class="card-body p-4">
-                      <div class="text-center">
-                          <!-- Product name-->
-                          <h5 class="fw-bolder">Fancy Product</h5>
-                          <!-- Product price-->
-                          Estrellas
-                      </div>
-                  </div>
-                  <!-- Product actions-->
-                  <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                      <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Ver Juego</a></div>
-                  </div>
-              </div>
-          </div>
-          <div class="col mb-5">
-            <div class="card h-100">
-                <!-- Product image-->
-                <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                <!-- Product details-->
-                <div class="card-body p-4">
-                    <div class="text-center">
-                        <!-- Product name-->
-                        <h5 class="fw-bolder">Fancy Product</h5>
-                        <!-- Product price-->
-                        Estrellas
-                    </div>
-                </div>
-                <!-- Product actions-->
-                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Ver Juego</a></div>
-                </div>
-            </div>
-        </div>
-        <div class="col mb-5">
-          <div class="card h-100">
-              <!-- Product image-->
-              <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-              <!-- Product details-->
-              <div class="card-body p-4">
-                  <div class="text-center">
-                      <!-- Product name-->
-                      <h5 class="fw-bolder">Fancy Product</h5>
-                      <!-- Product price-->
-                      Estrellas
-                  </div>
-              </div>
-              <!-- Product actions-->
-              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                  <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Ver Juego</a></div>
-              </div>
-          </div>
-      </div>
+            @endforeach
+            @if ($related->count() == 0)
+            <h5 class="fw-bolder mb-4">Parece que aún no hay juegos similares...</h5>
+            @endif
+            
         </div>
     </div>
 </section>

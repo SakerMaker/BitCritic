@@ -32,7 +32,8 @@ Route::get('/games/{game}', [GameController::class,'game'])->name('games.game');
 
 Route::get('/perfil/{perfil}', [PerfilController::class,'show'])->name('perfil.index');
 Route::get('/perfil/{perfil}/edit', [PerfilController::class,'edit'])->name('perfilEdit')->middleware("userprofile");
-Route::get('/perfil/{perfil}/update', [PerfilController::class,'update'])->name('perfil.update');
+Route::put('perfil/{perfil}', [PerfilController::class,'update'])->name('perfil.update')->middleware("userprofile");
+
 
 Route::get('/panel', [PanelController::class, 'index'])->name('panel.index')->middleware("admin");
 
@@ -57,26 +58,26 @@ Route::delete('panel/users/{user}/destroy', [UserController::class,'destroy'])->
 //CRUD GAME
 Route::get('panel/games', [GameController::class,'panelIndex'])->name('games.panelIndex')->middleware("admin");
 Route::get('panel/games/create', [GameController::class,'create'])->name('games.create')->middleware("admin");
-Route::delete('panel/games/destroy/{game}', [GameController::class,'destroy'])->name('games.destroy')->middleware("admin");
 Route::get('panel/games/show/{game}', [GameController::class,'show'])->name('games.show')->middleware("admin");
 Route::get('panel/games/edit/{game}', [GameController::class,'edit'])->name('games.edit')->middleware("admin");
-Route::put('panel/games/update/{game}', [GameController::class,'update'])->name('games.update')->middleware("admin");
 Route::post('panel/games/store', [GameController::class,'store'])->name('games.store')->middleware("admin");
+Route::put('panel/games/update/{game}', [GameController::class,'update'])->name('games.update')->middleware("admin");
+Route::delete('panel/games/destroy/{game}', [GameController::class,'destroy'])->name('games.destroy')->middleware("admin");
 
 //CRUD REVIEW
 Route::get('panel/reviews/index', [ReviewController::class,'index'])->name('reviews.index')->middleware("admin");
 Route::get('panel/reviews/create', [ReviewController::class,'create'])->name('reviews.create')->middleware("admin");
-Route::delete('panel/reviews/destroy/{review}', [ReviewController::class,'destroy'])->name('reviews.destroy')->middleware("admin");
 Route::get('panel/reviews/show/{review}', [ReviewController::class,'show'])->name('reviews.show')->middleware("admin");
 Route::get('panel/reviews/edit/{review}', [ReviewController::class,'edit'])->name('reviews.edit')->middleware("admin");
-Route::put('panel/reviews/update/{review}', [ReviewController::class,'update'])->name('reviews.update')->middleware("admin");
 Route::post('panel/reviews/store', [ReviewController::class,'store'])->name('reviews.store')->middleware("admin");
+Route::put('panel/reviews/update/{review}', [ReviewController::class,'update'])->name('reviews.update')->middleware("admin");
+Route::delete('panel/reviews/destroy/{review}', [ReviewController::class,'destroy'])->name('reviews.destroy')->middleware("admin");
 
 //CRUD COMMENT
 Route::get('panel/comments/index', [CommentController::class,'index'])->name('comments.index')->middleware("admin");
 Route::get('panel/comments/create', [CommentController::class,'create'])->name('comments.create')->middleware("admin");
-Route::delete('panel/comments/destroy/{comment}', [CommentController::class,'destroy'])->name('comments.destroy')->middleware("admin");
 Route::get('panel/comments/show/{comment}', [CommentController::class,'show'])->name('comments.show')->middleware("admin");
 Route::get('panel/comments/edit/{comment}', [CommentController::class,'edit'])->name('comments.edit')->middleware("admin");
-Route::put('panel/comments/update/{comment}', [CommentController::class,'update'])->name('comments.update')->middleware("admin");
 Route::post('panel/comments/store', [CommentController::class,'store'])->name('comments.store')->middleware("admin");
+Route::put('panel/comments/update/{comment}', [CommentController::class,'update'])->name('comments.update')->middleware("admin");
+Route::delete('panel/comments/destroy/{comment}', [CommentController::class,'destroy'])->name('comments.destroy')->middleware("admin");

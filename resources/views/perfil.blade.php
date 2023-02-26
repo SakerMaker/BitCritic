@@ -10,9 +10,9 @@
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col col-lg-12 col-xl-12">
           <div class="card">
-            <div class="rounded-top text-white d-flex flex-row" style="background-color: #006ac7; height:200px;">
+            <div class="rounded-top text-white d-flex flex-row" style="background: url('{{url($user->banner_photo_path)}}'); height:200px;">
               <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
-                <img src="{{url('img/sin-foto.png')}}"
+                <img src="{{url($user->profile_photo_path)}}"
                   alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
                   style="width: 150px; z-index: 1">
               @if (Auth::id()==$user->id)
@@ -24,7 +24,7 @@
               </div>
               <div class="ms-3" style="margin-top: 130px;">
                 <h5>{{$user->name}}</h5>
-                <p><i class="bi bi-geo-alt-fill"></i> España</p>
+                <p><i class="bi bi-geo-alt-fill"></i> {{$user->location}}</p>
               </div>
             </div>
             <div class="p-4 text-black" style="background-color: #f8f9fa;">
