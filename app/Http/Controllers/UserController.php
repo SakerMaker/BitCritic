@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+
 /**
  * Class UserController
  * @package App\Http\Controllers
  */
 class UserController extends Controller
 {
-  
+
     public function index()
     {
         $users = User::paginate(10);
@@ -20,23 +21,47 @@ class UserController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * $users->perPage());
     }
 
-   
+
     public function create()
     {
         $user = new User();
         return view('user.create', compact('user'));
     }
 
-    
+
     public function store(Request $request)
     {
         request()->validate(User::$rules);
-        $request['password']=Hash::make($request->password);
-        $user = User::create($request->all());
+
+        $datos = $request->all();
+
+        $datos['password'] = Hash::make($request->password);
+
+        if ($request->hasFile('profile_photo_path')) {
+            $file = $request['profile_photo_path'];
+            $destinationPath = "img/";
+            $filename = time() . "-" . $file->getClientOriginalName();
+            $uploadSuccess = $request['profile_photo_path']->move($destinationPath, $filename);
+            $datos['profile_photo_path'] = $destinationPath . $filename;
+        } else {
+            $datos['profile_photo_path'] = "img/profileDefault.png";
+        }
+
+        if ($request->hasFile('banner_photo_path')) {
+            $file = $request['banner_photo_path'];
+            $destinationPath = "img/";
+            $filename = time() . "-" . $file->getClientOriginalName();
+            $uploadSuccess = $request['banner_photo_path']->move($destinationPath, $filename);
+            $datos['banner_photo_path'] = $destinationPath . $filename;
+        } else {
+            $datos['banner_photo_path'] = "img/bannerDefault.png";
+        }
+
+        $user = User::create($datos);
         $user->assignRole('User');
 
         return redirect()->route('users.index')
-             ->with('success', 'User created successfully.');
+            ->with('success', 'User created successfully.');
     }
 
     public function show($id)
@@ -46,34 +71,65 @@ class UserController extends Controller
         return view('user.show', compact('user'));
     }
 
- 
+
     public function edit($id)
     {
         $user = User::find($id);
-        $edit=True;
-        return view('user.edit', compact('user','edit'));
+        $edit = True;
+        return view('user.edit', compact('user', 'edit'));
     }
 
     public function update(Request $request, User $user)
     {
         request()->validate(User::$rules);
-        
-        if($request['password']!=$user->password){
-            $request['password']=Hash::make($request->password);
+
+        $datos = $request->all();
+
+        if ($request->hasFile('profile_photo_path')) {
+            $file = $request['profile_photo_path'];
+            $destinationPath = "img/";
+            $filename = time() . "-" . $file->getClientOriginalName();
+            $uploadSuccess = $request['profile_photo_path']->move($destinationPath, $filename);
+            $datos['profile_photo_path'] = $destinationPath . $filename;
         }
-        
-        $user->update($request->all());
-        
+
+        if ($request->hasFile('banner_photo_path')) {
+            $file = $request['banner_photo_path'];
+            $destinationPath = "img/";
+            $filename = time() . "-" . $file->getClientOriginalName();
+            $uploadSuccess = $request['banner_photo_path']->move($destinationPath, $filename);
+            $datos['banner_photo_path'] = $destinationPath . $filename;
+        }
+
+        if ($datos['password'] != $user->password) {
+            $datos['password'] = Hash::make($request->password);
+        }
+
+        $user->update($datos);
+
         return redirect()->route('users.index')
             ->with('success', 'User updated successfully');
     }
 
     public function destroy($id)
     {
-        $user = User::find($id)->delete();
+        $user = User::find($id);
 
+        if ($user['profile_photo_path'] != "img/profileDefault.png") {
+            if(file_exists($user['profile_photo_path'])){
+                unlink($user['profile_photo_path']);
+            }
+        }
+        if ($user['banner_photo_path'] != "img/bannerDefault.png") {
+            if(file_exists($user['banner_photo_path'])){
+                unlink($user['banner_photo_path']);
+            }
+        }
+
+
+
+        $user->delete();
         return redirect()->route('users.index')
             ->with('success', 'User deleted successfully');
     }
-
 }

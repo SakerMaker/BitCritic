@@ -26,17 +26,18 @@
             {!! $errors->first('location', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
-        <div class="form-group">
-            {{ Form::label('profile_photo_path') }}
-            {{ Form::text('profile_photo_path', $user->profile_photo_path, ['class' => 'form-control' . ($errors->has('profile_photo_path') ? ' is-invalid' : ''), 'placeholder' => 'Profile photo path']) }}
-            {!! $errors->first('profile_photo_path', '<div class="invalid-feedback">:message</div>') !!}
+        <div class="form-group {{ $errors->has('profile_photo_path') ? 'has-error' : '' }}">
+            <label for="profile_photo_path">Profile photo path</label>
+            <input type="file" name="profile_photo_path" class="form-control">
+            <span class="text-danger">{{ $errors->first('profile_photo_path') }}</span>
         </div>
 
-        <div class="form-group">
-            {{ Form::label('banner_photo_path') }}
-            {{ Form::text('banner_photo_path', $user->banner_photo_path, ['class' => 'form-control' . ($errors->has('banner_photo_path') ? ' is-invalid' : ''), 'placeholder' => 'Banner photo path']) }}
-            {!! $errors->first('banner_photo_path', '<div class="invalid-feedback">:message</div>') !!}
+        <div class="form-group {{ $errors->has('banner_photo_path') ? 'has-error' : '' }}">
+            <label for="banner_photo_path">Banner photo path</label>
+            <input type="file" name="banner_photo_path" class="form-control">
+            <span class="text-danger">{{ $errors->first('banner_photo_path') }}</span>
         </div>
+
 
         <div class="form-group">
             {{ Form::label('about_you') }}
