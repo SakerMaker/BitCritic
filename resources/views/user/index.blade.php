@@ -1,4 +1,4 @@
-@extends('layouts.panelLayout')
+@extends('layouts.app')
 
 @section('template_title')
     Panel Usuarios
