@@ -32,7 +32,7 @@
           <div class="carousel-caption">
             <h1 class="fw-bold">Juegos Recientes</h1>
             <p class="fw-normal">Descubre lo que opina la gente de las novedades del gaming.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Descubrir</a></p>
+            <p><a class="btn btn-lg btn-primary" href="{{ url("/games/ordered") }}">Descubrir</a></p>
           </div>
         </div>
       </div>
@@ -41,9 +41,9 @@
           focusable="false" style="object-fit: cover;">
         <div class="container">
           <div class="carousel-caption text-end">
-            <h1 class="fw-bold">Reviews del Día</h1>
-            <p class="fw-normal">Encuentra las reviews más votadas del mes.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Ver Reviews</a></p>
+            <h1 class="fw-bold">Busca tu juego</h1>
+            <p class="fw-normal">Encuentra el juego que buscas y hazle una review.</p>
+            <p><a class="btn btn-lg btn-primary" href="{{ url("/games") }}">Ver Reviews</a></p>
           </div>
         </div>
       </div>
@@ -67,8 +67,12 @@
             <p class="lead fw-normal text-white-50 mb-4">Lee todas las opiniones y reviews de la gente sobre tus juegos
               favoritos y aporta tu crítica para que todo el mundo la vea.</p>
             <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-              <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#features">Opinar</a>
-              <a class="btn btn-outline-light btn-lg px-4" href="#!">Leer Opiniones</a>
+              @guest
+                <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{{url("/login")}}">Opinar</a>
+              @else
+                <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{{url("/perfil/".Auth::id())}}">Opinar</a>
+              @endguest
+              <a class="btn btn-outline-light btn-lg px-4" href="{{url("/reviews/".rand(1,$reviews))}}">Review Aleatoria</a>
             </div>
           </div>
         </div>
@@ -92,7 +96,9 @@
       <div class="col-lg-4 mb-5">
         <div class="card h-100 shadow border-0">
           <a href="{{url("/games") . "/" .$game->id}}" class="fill-div-link"></a>
-          <img class="card-img-top" src="{{url("$game->image")}}" alt="..." />
+          <div style="position:relative;overflow:hidden;padding-bottom:100%;">
+            <img class="img img-responsive full-width" style="position:absolute;width:100%;" src="{{$game->image}}" alt="..." />
+          </div>
           <div class="card-body p-4">
             <div class="badge bg-primary bg-gradient rounded-pill mb-2">{{$game->genero}}</div>
             <a class="text-decoration-none link-dark stretched-link" href="#!">

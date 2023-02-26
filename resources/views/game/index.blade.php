@@ -60,7 +60,7 @@
                 <div class="card shadow border-0"  style="min-height:450px;">
                   <a href="{{url("/games") . "/" .$game->id}}" class="fill-div-link"></a>
                   <div style="position:relative;overflow:hidden;padding-bottom:100%;">
-                    <img class="img img-responsive full-width" style="position:absolute;width:100%;" src="{{$game->image}}" alt="..." />
+                    <img class="img img-responsive full-width" style="position:absolute;width:100%;" src="{{url($game->image)}}" alt="..." />
                   </div>
                   
                   <div class="card-body p-4">
@@ -125,7 +125,13 @@
             </div>
             <div class="ms-xl-4">
               <div class="input-group mb-2">
-                <a class="btn btn-outline-light btn-lg col-12 px-4" href="#!">Escribir Review</a>
+              @guest
+                <a class="btn btn-outline-light btn-lg col-12 px-4" href="{{url("/login")}}">Escribir Review</a>
+              
+              @else
+              <a class="btn btn-outline-light btn-lg col-12 px-4" href="{{url("/perfil/".Auth::id())}}">Escribir Review</a>
+
+              @endguest
               </div>
               <div class="small text-white-50">Todo lo que compartas será revisado por moderadores.</div>
             </div>

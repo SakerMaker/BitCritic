@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Juego 
+    Juego {{$games->title}}
 @endsection
 
 @section('content')
@@ -49,12 +49,17 @@
                     
                     <div class="d-flex mb-4">
                         <!-- Parent comment-->
-                        <div class="flex-shrink-0"><img class="rounded-circle" src="{{ url($single_review[0]->profile_photo_path) }}" alt="..." style="width:50px"/></div>
+                        <a href={{url("/perfil/".$single_review[0]->id)}}><div class="flex-shrink-0"><img class="rounded-circle" src="{{ url($single_review[0]->profile_photo_path) }}" alt="..." style="width:50px"/></div></a>
                         <div class="ms-3">
                         
-                            <div class="fw-bold"><span class="fw-bolder">{{$single_review[0]->review_title}}</span> &middot; by {{$single_review[0]->name}} &middot; {{substr($single_review[0]->created_at,0,10)}}</div>
-                            {{$single_review[0]->review_content}}<br>
-                            
+                            <div class="fw-bold"><span class="fw-bolder">{{$single_review[0]->review_title}}</span> &middot; by <a href={{url("/perfil/".$single_review[0]->id)}}>{{$single_review[0]->name}}</a> &middot; {{substr($single_review[0]->created_at,0,10)}}</div>
+                            @if (strlen($single_review[0]->review_content)>100)
+                                {{substr($single_review[0]->review_content,0,100)}}...
+                            @else
+                                {{substr($single_review[0]->review_content,0,100)}}
+                            @endif
+                            <br>
+                            <a class="text-secondary" href="{{url("/reviews/".$single_review[0]->id_review)}}">Ver review</a>
                         
                         </div>
                     </div>

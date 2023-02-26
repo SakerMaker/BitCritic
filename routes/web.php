@@ -27,12 +27,14 @@ Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/games', [GameController::class,'index'])->name('games.index');
+Route::get('/games/ordered', [GameController::class,'indexOrdered'])->name('games.indexOrdered');
 Route::get('/games/search', [GameController::class,'search'])->name('games.search');
 Route::get('/games/{game}', [GameController::class,'game'])->name('games.game');
 
+Route::get('/reviews/{review}', [ReviewController::class,'review'])->name('reviews.review');
+
 Route::get('/perfil/{perfil}', [PerfilController::class,'show'])->name('perfil.index');
 Route::get('/perfil/{perfil}/edit', [PerfilController::class,'edit'])->name('perfilEdit')->middleware("userprofile");
-Route::put('perfil/{perfil}', [PerfilController::class,'update'])->name('perfil.update')->middleware("userprofile");
 
 
 Route::get('/panel', [PanelController::class, 'index'])->name('panel.index')->middleware("admin");
@@ -52,7 +54,7 @@ Route::get('panel/users/create', [UserController::class,'create'])->name('users.
 Route::get('panel/users/{user}', [UserController::class,'show'])->name('users.show')->middleware("admin");
 Route::get('panel/users/{user}/edit', [UserController::class,'edit'])->name('users.edit')->middleware("admin");
 Route::post('panel/users', [UserController::class,'store'])->name('users.store')->middleware("admin");
-Route::put('panel/users/{user}', [UserController::class,'update'])->name('users.update')->middleware("admin");
+Route::put('panel/users/{user}', [UserController::class,'update'])->name('users.update');
 Route::delete('panel/users/{user}/destroy', [UserController::class,'destroy'])->name('users.destroy')->middleware("admin");
 
 //CRUD GAME
@@ -69,7 +71,7 @@ Route::get('panel/reviews/index', [ReviewController::class,'index'])->name('revi
 Route::get('panel/reviews/create', [ReviewController::class,'create'])->name('reviews.create')->middleware("admin");
 Route::get('panel/reviews/show/{review}', [ReviewController::class,'show'])->name('reviews.show')->middleware("admin");
 Route::get('panel/reviews/edit/{review}', [ReviewController::class,'edit'])->name('reviews.edit')->middleware("admin");
-Route::post('panel/reviews/store', [ReviewController::class,'store'])->name('reviews.store')->middleware("admin");
+Route::post('panel/reviews/store', [ReviewController::class,'store'])->name('reviews.store');
 Route::put('panel/reviews/update/{review}', [ReviewController::class,'update'])->name('reviews.update')->middleware("admin");
 Route::delete('panel/reviews/destroy/{review}', [ReviewController::class,'destroy'])->name('reviews.destroy')->middleware("admin");
 
@@ -78,6 +80,6 @@ Route::get('panel/comments/index', [CommentController::class,'index'])->name('co
 Route::get('panel/comments/create', [CommentController::class,'create'])->name('comments.create')->middleware("admin");
 Route::get('panel/comments/show/{comment}', [CommentController::class,'show'])->name('comments.show')->middleware("admin");
 Route::get('panel/comments/edit/{comment}', [CommentController::class,'edit'])->name('comments.edit')->middleware("admin");
-Route::post('panel/comments/store', [CommentController::class,'store'])->name('comments.store')->middleware("admin");
+Route::post('panel/comments/store', [CommentController::class,'store'])->name('comments.store');
 Route::put('panel/comments/update/{comment}', [CommentController::class,'update'])->name('comments.update')->middleware("admin");
-Route::delete('panel/comments/destroy/{comment}', [CommentController::class,'destroy'])->name('comments.destroy')->middleware("admin");
+Route::delete('panel/comments/destroy/{comment}', [CommentController::class,'destroy'])->name('comments.destroy');

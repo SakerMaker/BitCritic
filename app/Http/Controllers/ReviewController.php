@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Review;
 use App\Models\User;
 use App\Models\Game;
@@ -20,6 +21,20 @@ class ReviewController extends Controller
 
         return view('review.index', compact('reviews'))
             ->with('i', (request()->input('page', 1) - 1) * $reviews->perPage());
+    }
+
+    public function review($id)
+    {
+        $review=Review::find($id);
+        $user=User::find($review->id_user);
+        $comments=Comment::all()->where("id_review","=",$id);
+        $users=array();
+        foreach ($comments as $single_comment) {
+            $users[]=User::join("comments","users.id","=","comments.id_user")->select("users.id as id","users.name as name","users.profile_photo_path as profile_photo_path","comments.id as id_commnent","comments.content as comment_content","comments.created_at as created_at","comments.updated_at as updated_at")->where("comments.id","=",$single_comment->id)->groupBy("users.id")->get();
+        }
+        $game=Game::find($review->id_game);
+
+        return view('review', compact('review'))->with("users",$users)->with("game",$game)->with("user",$user);
     }
 
    

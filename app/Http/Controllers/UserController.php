@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 /**
  * Class UserController
@@ -107,8 +109,14 @@ class UserController extends Controller
 
         $user->update($datos);
 
-        return redirect()->route('users.index')
+        if (str_contains(url()->previous(),"perfil")) {
+            return redirect()->route('perfil.index',Auth::id())
             ->with('success', 'User updated successfully');
+        } else {
+            return redirect()->route('users.index')
+            ->with('success', 'User updated successfully');
+        }
+        
     }
 
     public function destroy($id)

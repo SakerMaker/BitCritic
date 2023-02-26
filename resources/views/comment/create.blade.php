@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.panelLayout')
 
 @section('template_title')
     Crear Comentario

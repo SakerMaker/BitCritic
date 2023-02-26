@@ -7,7 +7,8 @@
 @section('content')
 
 @includeif('partials.errors')
-<form method="POST" action="{{ route('perfil.update', $user->id) }}"  role="form" enctype="multipart/form-data">
+
+<form method="POST" action="{{ route('users.update', $user->id) }}"  role="form" enctype="multipart/form-data">
   {{ method_field('PATCH') }}
   @csrf
   @method('PUT')
@@ -30,33 +31,33 @@
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col col-lg-12 col-xl-12">
           <div class="card">
-            <div class="rounded-top text-white d-flex" style="background: url('{{url($user->banner_photo_path)}}'); height:200px;">
+            <div class="rounded-top text-white d-flex" id="output2" style="background: url('{{url($user->banner_photo_path)}}'); height:200px;background-size:cover;background-position:center center;">
               <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
                 <div class="profile-pic img-fluid mt-4 mb-2">
                     <label class="-label" for="file">
                       <span class="glyphicon glyphicon-camera"></span>
                       <span>Cambiar Foto</span>
                     </label>
-                      
-                      <input type="file" name="image"  id="file" onchange="loadFile(event)">
+                    
+                      <input type="file" name="profile_photo_path"  id="file" onchange="loadFile(event)">
                       <img src="{{ url($user->profile_photo_path) }}" id="output" width="200" />
                     
                   </div>
                 
               </div>
               <div class="ms-3" style="margin-top: 130px;">
-                <h5>Usuario</h5>
+                <h5>{{$user->name}}</h5>
                 <p><i class="bi bi-geo-alt-fill"></i>
                 
                   {{ Form::text('location', $user->location, ['class' => 'form-control w-75 d-inline-block mx-3' . ($errors->has('location') ? ' is-invalid' : ''), 'placeholder' => 'Ubicación...']) }}
                   {!! $errors->first('location', '<div class="invalid-feedback">:message</div>') !!}
               </p>
               </div>
-              <div class="text-right py-1 m-auto mr-0" style="margin-right:auto!important;">
+              <div class="text-right py-1 m-auto mr-0 overflow-hidden" style="margin-right:auto!important;">
                 <div class="upload-btn-wrapper">
                     <button class="btn btn-outline-light btn-lg px-4">Cambiar Banner</button>
-                    <input type="file" name="banner_photo_path" />
-                    {!! $errors->first('banner_photo_path', '<div class="invalid-feedback">:message</div>') !!}
+                    <input type="file" name="banner_photo_path" id="file" onchange="loadFileBanner(event)">
+                    <span class="text-danger">{{ $errors->first('banner_photo_path') }}</span>
                   </div>
              </div>
             </div>
@@ -81,12 +82,20 @@
       
     </div>
   </section>
+  
+
+
 </form>
 
 <script>
 var loadFile = function (event) {
 var image = document.getElementById("output");
 image.src = URL.createObjectURL(event.target.files[0]);
+};
+
+var loadFileBanner = function (event) {
+var image2 = document.getElementById("output2");
+image2.style.background = "url("+URL.createObjectURL(event.target.files[0])+")";
 };
 
 </script>

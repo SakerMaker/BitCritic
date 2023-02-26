@@ -35,7 +35,7 @@ class CommentController extends Controller
 
         $comment = Comment::create($request->all());
 
-        return redirect()->route('comments.index')
+        return redirect()->back()
             ->with('success', 'Comment created successfully.');
     }
 
@@ -60,7 +60,7 @@ class CommentController extends Controller
 
         $comment->update($request->all());
 
-        return redirect()->route('comments.index')
+        return redirect()->back('comments.index')
             ->with('success', 'Comment updated successfully');
     }
 
@@ -68,7 +68,7 @@ class CommentController extends Controller
     {
         $comment = Comment::find($id)->delete();
 
-        return redirect()->route('comments.index')
+        return redirect()->back()
             ->with('success', 'Comment deleted successfully');
     }
 }

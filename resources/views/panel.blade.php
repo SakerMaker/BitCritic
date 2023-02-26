@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+<section class="bg-dark py-5">
     <h1 class='text-center text-white'>SOLO ADMINS PUTOOO</h1><br>
     <div class="container d-flex justify-content-center align-items-center">
         <form action="{{ route('users.index') }}" method="GET" class="px-3">
@@ -20,5 +21,5 @@
             <button type="submit" class="btn btn-primary"><i class="fa fa-fw fa-trash"></i> Comments</button>
         </form>
     </div>
-    
+</section>
 @endsection

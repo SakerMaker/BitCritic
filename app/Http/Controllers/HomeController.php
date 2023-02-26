@@ -27,8 +27,9 @@ class HomeController extends Controller
     public function index()
     {
         $games=Game::leftJoin("reviews","games.id","=","reviews.id_game")->select("games.id as id","games.title as title","games.description as description","games.image as image","games.fecha_salida as fecha_salida","games.genero as genero",DB::raw("count(reviews.id) as count"))->groupBy("games.id")->orderBy("count","desc")->paginate(3);
-        
+        $numberOfReviews=Review::count();
+
         return view('home', compact('games'))
-            ->with('i', (request()->input('page', 1) - 1) * $games->perPage());
+            ->with('i', (request()->input('page', 1) - 1) * $games->perPage())->with("reviews",$numberOfReviews);
     }
 }
