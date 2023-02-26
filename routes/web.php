@@ -28,7 +28,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/games', [GameController::class,'index'])->name('games.index');
 Route::get('/games/ordered', [GameController::class,'indexOrdered'])->name('games.indexOrdered');
-Route::get('/games/search', [GameController::class,'search'])->name('games.search');
+Route::post('/games/search/', [GameController::class,'search'])->name('games.search');
 Route::get('/games/{game}', [GameController::class,'game'])->name('games.game');
 
 Route::get('/reviews/{review}', [ReviewController::class,'review'])->name('reviews.review');

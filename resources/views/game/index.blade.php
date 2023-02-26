@@ -28,17 +28,15 @@
       <div class="row gx-5 justify-content-center">
         <div class="col-lg-8 col-xl-6">
           <div class="text-center text-dark">
-            <h2 class="fw-bolder mb-5">Juegos Más Valorados</h2>
+            <h2 class="fw-bolder mb-3">Juegos Más Valorados</h2>
           </div>
         </div>
       </div>
       
       <div class="row gx-5">
         <div class="mt-1 mb-4">
-              <form action="{{ route('games.search') }}" method="GET">
-                  
-
-                  
+              <form action="{{ route('games.search') }}" method="POST">
+                @csrf
                 <div class="flex form-outline mb-4 form-floating col-lg-3 col-md-9 ms-auto">
                   <input class="form-control bg-white" type="text" placeholder="Búsqueda..." name="s">
                   <label class="form-check-label mb-4" for="search">
@@ -62,7 +60,7 @@
                   <div style="position:relative;overflow:hidden;padding-bottom:100%;">
                     <img class="img img-responsive full-width" style="position:absolute;width:100%;" src="{{url($game->image)}}" alt="..." />
                   </div>
-                  
+                  <p style="font-size:0px">localizador</p>
                   <div class="card-body p-4">
                     <div class="badge bg-primary bg-gradient rounded-pill mb-2">{{ $game->genero }}</div>
                     <a class="text-decoration-none link-dark stretched-link" href="#!">
@@ -88,9 +86,9 @@
                 </div>
               </div>
         @endforeach
+        
         {!! $games->links() !!}
       <div>
-        
       
       
       {{-- <div class="text-center mx-auto w-100">
@@ -129,7 +127,7 @@
                 <a class="btn btn-outline-light btn-lg col-12 px-4" href="{{url("/login")}}">Escribir Review</a>
               
               @else
-              <a class="btn btn-outline-light btn-lg col-12 px-4" href="{{url("/perfil/".Auth::id())}}">Escribir Review</a>
+              <a class="btn btn-outline-light btn-lg col-12 px-4" href="#search">Escribir Review</a>
 
               @endguest
               </div>

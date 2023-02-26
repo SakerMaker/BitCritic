@@ -32,7 +32,7 @@
           <div class="carousel-caption">
             <h1 class="fw-bold">Juegos Recientes</h1>
             <p class="fw-normal">Descubre lo que opina la gente de las novedades del gaming.</p>
-            <p><a class="btn btn-lg btn-primary" href="{{ url("/games/ordered") }}">Descubrir</a></p>
+            <p><a class="btn btn-lg btn-primary" href="{{ url("/games") }}">Descubrir</a></p>
           </div>
         </div>
       </div>
@@ -70,7 +70,7 @@
               @guest
                 <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{{url("/login")}}">Opinar</a>
               @else
-                <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{{url("/perfil/".Auth::id())}}">Opinar</a>
+                <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{{url("/games/#:~:text=localizador")}}">Opinar</a>
               @endguest
               <a class="btn btn-outline-light btn-lg px-4" href="{{url("/reviews/".$reviews[array_rand($reviews)])}}">Review Aleatoria</a>
             </div>
@@ -137,7 +137,7 @@
                 @guest
                   <a class="btn btn-outline-light btn-lg col-12 px-4" href="{{url('/login')}}">Escribir Review</a>
                 @else
-                  <a class="btn btn-outline-light btn-lg col-12 px-4" href="#">Escribir Review</a>
+                  <a class="btn btn-outline-light btn-lg col-12 px-4" href="{{url("/games/#:~:text=localizador")}}">Escribir Review</a>
                 @endguest
               </div>
               <div class="small text-white-50">Todo lo que compartas será revisado por moderadores.</div>
