@@ -72,7 +72,7 @@
               @else
                 <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{{url("/perfil/".Auth::id())}}">Opinar</a>
               @endguest
-              <a class="btn btn-outline-light btn-lg px-4" href="{{url("/reviews/".rand(1,$reviews))}}">Review Aleatoria</a>
+              <a class="btn btn-outline-light btn-lg px-4" href="{{url("/reviews/".$reviews[array_rand($reviews)])}}">Review Aleatoria</a>
             </div>
           </div>
         </div>

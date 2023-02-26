@@ -110,7 +110,7 @@
               @endif
                 
             @else
-              @if (isset($user) && Auth::id()==$user->id)
+              @if (request()->is('perfil'))
               <li class="nav-item">
                 <a class="nav-link nav-link--active" href="{{url("/perfil"). "/" .Auth::id()}}">Mi Perfil</a>
               </li>
