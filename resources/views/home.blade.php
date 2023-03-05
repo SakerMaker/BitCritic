@@ -72,7 +72,10 @@
               @else
                 <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{{url("games/#search")}}">Opinar</a>
               @endguest
+              @if (empty($reviews))
+              @else
               <a class="btn btn-outline-light btn-lg px-4" href="{{url("/reviews/".$reviews[array_rand($reviews)])}}">Review Aleatoria</a>
+              @endif
             </div>
           </div>
         </div>
