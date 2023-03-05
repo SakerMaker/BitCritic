@@ -90,7 +90,7 @@
                             <!-- Product price-->
                            
                             @if (strlen($related_game->description)>100)
-                                {{substr($related_game->description,-100)}}...
+                                {{substr($related_game->description,0,100)}}...
                             @else
                                 {{$related_game->description}}
                             @endif
