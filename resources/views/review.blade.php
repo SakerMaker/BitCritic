@@ -36,8 +36,18 @@
                     <!-- Post content-->
                     <section class="mb-5" style="width:100%; word-wrap: break-word;">
                         <p class="fs-5 mb-4">{{$review->content}}</p>
+                        @if ($user->id==Auth::id())
+                        <form action="{{ route('reviews.destroy',$review->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-white btn btn-secondary" style="float:right!important;"><i class="fa fa-fw fa-trash"></i> Borrar Review</button>
+                        </form>
+                        @else
+                        @endif
                     </section>
+                    
                 </article>
+                
                 <!-- Comments section-->
                 <section>
                     {{-- <div class="card bg-light text-dark">
@@ -79,6 +89,7 @@
                             </div>
                         </div>
                     </div> --}}
+                    
                     <h1 class="text-white mt-5 mb-4">Comentarios</h1>
           <div class="card bg-light">
             

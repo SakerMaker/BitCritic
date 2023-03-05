@@ -87,7 +87,7 @@ class ReviewController extends Controller
     {
         $review = Review::find($id)->delete();
 
-        return redirect()->route('reviews.index')
+        return redirect()->route('home')
             ->with('success', 'Review deleted successfully');
     }
 }

@@ -32,9 +32,9 @@ Route::post('/games/search/', [GameController::class,'search'])->name('games.sea
 Route::get('/games/{game}', [GameController::class,'game'])->name('games.game');
 
 Route::get('/reviews/{review}', [ReviewController::class,'review'])->name('reviews.review');
+Route::get('/reviews/{review}/edit', [ReviewController::class,'review'])->name('reviews.reviewEdit');
 
 Route::get('/perfil/{perfil}', [PerfilController::class,'show'])->name('perfil.index');
-Route::get('/perfil/{perfil}/edit', [PerfilController::class,'edit'])->name('perfilEdit')->middleware("userprofile");
 
 
 Route::get('/panel', [PanelController::class, 'index'])->name('panel.index')->middleware("admin");
@@ -73,7 +73,7 @@ Route::get('panel/reviews/show/{review}', [ReviewController::class,'show'])->nam
 Route::get('panel/reviews/edit/{review}', [ReviewController::class,'edit'])->name('reviews.edit')->middleware("admin");
 Route::post('panel/reviews/store', [ReviewController::class,'store'])->name('reviews.store');
 Route::put('panel/reviews/update/{review}', [ReviewController::class,'update'])->name('reviews.update')->middleware("admin");
-Route::delete('panel/reviews/destroy/{review}', [ReviewController::class,'destroy'])->name('reviews.destroy')->middleware("admin");
+Route::delete('panel/reviews/destroy/{review}', [ReviewController::class,'destroy'])->name('reviews.destroy');
 
 //CRUD COMMENT
 Route::get('panel/comments/index', [CommentController::class,'index'])->name('comments.index')->middleware("admin");
