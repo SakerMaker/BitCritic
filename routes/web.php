@@ -32,9 +32,9 @@ Route::post('/games/search/', [GameController::class,'search'])->name('games.sea
 Route::get('/games/{game}', [GameController::class,'game'])->name('games.game');
 
 Route::get('/reviews/{review}', [ReviewController::class,'review'])->name('reviews.review');
-Route::get('/reviews/{review}/edit', [ReviewController::class,'review'])->name('reviews.reviewEdit');
 
 Route::get('/perfil/{perfil}', [PerfilController::class,'show'])->name('perfil.index');
+Route::get('/perfil/{perfil}/edit', [PerfilController::class,'edit'])->name('perfil.edit');
 
 
 Route::get('/panel', [PanelController::class, 'index'])->name('panel.index')->middleware("admin");
