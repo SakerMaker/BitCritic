@@ -14,7 +14,7 @@
               <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
                 <img src="{{url($user->profile_photo_path)}}"
                   alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
-                  style="width: 150px; height:150px;z-index: 1">
+                  style="width: 150px; height:150px;z-index: 1;object-fit:cover;">
               @if (Auth::id()==$user->id)
                 <a href="{{Request::url()."/edit"}}" type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark"
                   style="z-index: 1;">
