@@ -11,8 +11,8 @@ class Game extends Model
 
     static $rules = [
 		'title' => 'required',
-		'description' => 'required',
-        'image' => 'mimes:jpeg,jpg,png|max:10240',
+		'description' => 'required|max:65535',
+        'image' => 'mimes:jpeg,jpg,png|max:65535',
         'fecha_salida' => 'required',
         'genero' => 'required',
     ];

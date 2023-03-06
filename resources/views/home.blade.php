@@ -107,7 +107,14 @@
             <a class="text-decoration-none link-dark stretched-link" href="#!">
               <h5 class="card-title mb-3">{{$game->title}}</h5>
             </a>
-            <p class="card-text mb-0">{{$game->description}}</p>
+
+            <p class="card-text mb-0">
+              @if (strlen($game->description)>100)
+                {{substr($game->description,0,100)}}...
+              @else
+                {{$game->description}}
+            @endif  
+            </p>
           </div>
           <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
             <div class="d-flex align-items-end justify-content-between">
