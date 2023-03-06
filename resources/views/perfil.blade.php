@@ -14,7 +14,7 @@
               <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
                 <img src="{{url($user->profile_photo_path)}}"
                   alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
-                  style="width: 150px; z-index: 1">
+                  style="width: 150px; height:150px;z-index: 1">
               @if (Auth::id()==$user->id)
                 <a href="{{Request::url()."/edit"}}" type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark"
                   style="z-index: 1;">
@@ -68,7 +68,12 @@
                         <h5 class="card-title mb-3">{{$single_review[0]->review_title}}</h5>
                       </a>
 
-                      <p class="card-text mb-0">{{$single_review[0]->review_content}}</p>
+                      <p class="card-text mb-0">
+                        @if (strlen($single_review[0]->review_content)>100)
+                        {{substr($single_review[0]->review_content,0,100)}}...
+                      @else
+                        {{$single_review[0]->review_content}}
+                      @endif  </p>
                     </div>
                     <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
                       <div class="d-flex align-items-end justify-content-between">
