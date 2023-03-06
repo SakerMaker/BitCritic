@@ -113,7 +113,7 @@
                 {{substr($game->description,0,100)}}...
               @else
                 {{$game->description}}
-            @endif  
+              @endif  
             </p>
           </div>
           <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
