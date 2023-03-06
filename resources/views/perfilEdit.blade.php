@@ -55,7 +55,7 @@
               </div>
               <div class="text-right py-1 m-auto mr-0 overflow-hidden" style="margin-right:auto!important;">
                 <div class="upload-btn-wrapper">
-                    <button class="btn btn-outline-light btn-lg px-4">Cambiar Banner</button>
+                    <button class="btn btn-light btn-lg px-4">Cambiar Banner</button>
                     <input type="file" name="banner_photo_path" id="file" onchange="loadFileBanner(event)">
                     <span class="text-danger">{{ $errors->first('banner_photo_path') }}</span>
                   </div>
