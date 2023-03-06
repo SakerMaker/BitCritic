@@ -43,18 +43,34 @@ class ReviewController extends Controller
         $allGames = Game::all();
         $allUsers = User::all();
         $review = new Review();
+        
+
         return view('review.create', compact('review','allUsers','allGames'));
     }
 
     
     public function store(Request $request)
     {
+        $allReviews = Review::all();
+
         request()->validate(Review::$rules);
 
-        $review = Review::create($request->all());
+        $comprobar=true;
+        foreach ($allReviews as $comprobarReview){
+            if($comprobarReview->id_game==$request->id_game && $comprobarReview->id_user==$request->id_user){
+                $comprobar=false;
+            }
+        }
 
-        return redirect()->back()
-            ->with('success', 'Review created successfully.');
+        if($comprobar){
+            $review = Review::create($request->all());
+
+            return redirect()->route('reviews.index')
+                ->with('success', 'Review created successfully.');
+        }else{
+            return redirect()->route('reviews.index')
+            ->with('error', 'An user cannot create more than one review per game.');
+        }
     }
 
     public function show($id)

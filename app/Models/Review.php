@@ -22,12 +22,12 @@ class Review extends Model
 
     public function game()
     {
-        return $this->hasOne('App\Models\Game', 'id', 'id_game');
+        return $this->belongsTo('App\Models\Game', 'id', 'id_game');
     }
 
     public function user()
     {
-        return $this->hasOne('App\Models\User', 'id', 'id_user');
+        return $this->belongsTo('App\Models\User', 'id', 'id_user');
     }
 
     public function comment()
