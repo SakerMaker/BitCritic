@@ -53,7 +53,7 @@ Route::get('panel/users', [UserController::class,'index'])->name('users.index')-
 Route::get('panel/users/create', [UserController::class,'create'])->name('users.create')->middleware("admin");
 Route::get('panel/users/{user}', [UserController::class,'show'])->name('users.show')->middleware("admin");
 Route::get('panel/users/{user}/edit', [UserController::class,'edit'])->name('users.edit')->middleware("admin");
-Route::post('panel/users', [UserController::class,'store'])->name('users.store')->middleware("admin");
+Route::post('panel/users', [UserController::class,'store'])->name('users.store');
 Route::put('panel/users/{user}', [UserController::class,'update'])->name('users.update');
 Route::delete('panel/users/{user}/destroy', [UserController::class,'destroy'])->name('users.destroy')->middleware("admin");
 
