@@ -62,7 +62,7 @@ class UserController extends Controller
         $user = User::create($datos);
         $user->assignRole('User');
 
-        return redirect()->route('users.index')
+        return redirect()->route('home')
             ->with('success', 'User created successfully.');
     }
 

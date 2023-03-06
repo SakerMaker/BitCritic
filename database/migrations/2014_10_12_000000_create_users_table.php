@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('location');
-            $table->string('profile_photo_path')->nullable();
-            $table->string('banner_photo_path')->nullable();
+            $table->string('location')->nullable();
+            $table->string('profile_photo_path')->nullable()->default("img/profileDefault.png");
+            $table->string('banner_photo_path')->nullable()->default("img/bannerDefault.png");
             $table->string('about_you')->nullable();
             $table->rememberToken();
             $table->timestamps();
