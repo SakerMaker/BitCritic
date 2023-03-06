@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('template_title')
+    Registro
+@endsection
+
 @section('content')
 <div class="px-4 py-5 px-md-5 text-center text-lg-start d-flex align-items-center justify-content-center bg-dark" style="background-color: hsl(0, 0%, 96%);min-height:75vh;">
     <div class="container">
