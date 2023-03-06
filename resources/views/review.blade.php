@@ -15,8 +15,8 @@
                     <div class="ms-3">
                         <div class="fw-bold"><a class="text-white" href="{{url("/perfil/".$user->id)}}">{{$user->name}}</a></div>
                         <div class="text-muted">
-                            @if (strlen($user->about_you)>15)
-                        {{substr($user->about_you,0,15)}}...
+                            @if (strlen($user->about_you)>20)
+                        {{substr($user->about_you,0,20)}}...
                       @else
                         {{$user->about_you}}
                       @endif</div>
