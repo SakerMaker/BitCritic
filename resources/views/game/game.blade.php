@@ -27,13 +27,17 @@
         <section id="reviews">
             <h1 class="text-white mt-5 mb-4">Escribe tu Review</h1>
           <div class="card bg-light">
-            
+            @if ($message = Session::get('error'))
+                        <div class="alert alert-danger">
+                            <p>{{ $message }}</p>
+                        </div>
+            @endif
               <div class="card-body text-dark p-5 ">
                   <!-- Comment form-->
                   @includeif('partials.errors')
                   <form method="POST" action="{{ route('reviews.store') }}"  role="form" class="mb-4" enctype="multipart/form-data">
                     @csrf
-
+                    {{ Form::hidden('reviewUsuario', true) }}
                     {{ Form::hidden('id_game', $games->id) }}
                     {{ Form::hidden('id_user', Auth::id()) }}
                     {{ Form::text('title', "", ['class' => 'form-control mb-4' . ($errors->has('title') ? ' is-invalid' : ''), 'placeholder' => 'Título de la Review']) }}

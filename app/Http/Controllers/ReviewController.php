@@ -64,12 +64,20 @@ class ReviewController extends Controller
 
         if($comprobar){
             $review = Review::create($request->all());
-
-            return redirect()->route('reviews.index')
+            if(isset($_REQUEST['reviewUsuario'])){
+                return redirect()->back();
+            }else{
+                return redirect()->route('reviews.index')
                 ->with('success', 'Review created successfully.');
+            }
         }else{
-            return redirect()->route('reviews.index')
-            ->with('error', 'An user cannot create more than one review per game.');
+            if(isset($_REQUEST['reviewUsuario'])){
+                return redirect()->back()
+                ->with('error', 'Un usuario no puedo crear más de una review por juego.');
+            }else{
+                return redirect()->route('reviews.index')
+            ->with('error', 'Un usuario no puedo crear más de una review por juego.');
+            }
         }
     }
 
@@ -103,7 +111,14 @@ class ReviewController extends Controller
     {
         $review = Review::find($id)->delete();
 
-        return redirect()->route('home')
+        if(isset($_REQUEST['reviewUsuario'])){
+            return redirect()->route('home')
             ->with('success', 'Review deleted successfully');
+        }else{
+            return redirect()->route('reviews.index')
+            ->with('success', 'Review deleted successfully');
+        }
+
+        
     }
 }

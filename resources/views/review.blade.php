@@ -40,6 +40,7 @@
                         <form action="{{ route('reviews.destroy',$review->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
+                            <input type="hidden" name="reviewUsuario">
                             <button type="submit" class="text-white btn btn-secondary" style="float:right!important;"><i class="fa fa-fw fa-trash"></i> Borrar Review</button>
                         </form>
                         @else
