@@ -35,9 +35,9 @@
                     <figure class="mb-4"><a href="{{url("/games/".$game->id)}}"><img class="img-fluid rounded" style="width:100%;height:300px;object-fit:cover;" src="{{url($game->image)}}" alt="..." /></a></figure>
                     <!-- Post content-->
                     <section class="mb-5" style="width:100%; word-wrap: break-word;">
-                        <p class="fs-5 mb-4">{{$review->content}}</p>
+                        <p class="fs-5 mb-4">{{$review->content}}
                         @if ($user->id==Auth::id())
-                        <form action="{{ route('reviews.destroy',$review->id) }}" method="POST">
+                        <form action="{{ route('reviews.destroy',$review->id) }}" method="POST" >
                             @csrf
                             @method('DELETE')
                             <input type="hidden" name="reviewUsuario">
@@ -45,6 +45,7 @@
                         </form>
                         @else
                         @endif
+                        </p>
                     </section>
                     
                 </article>
@@ -116,7 +117,6 @@
                         <div class="ms-3" style="word-wrap: break-word;width:85%;">
                         
                             <div class="fw-bold">Comentario &middot; by <a href={{url("/perfil/".$user_comment[0]->id)}}>{{$user_comment[0]->name}}</a> &middot; {{substr($user_comment[0]->created_at,0,10)}}</div>
-                            <p>{{$user_comment[0]->comment_content}}</p>
                             @if ($user_comment[0]->id==Auth::id())
                                 <form action="{{ route('comments.destroy',$user_comment[0]->id_commnent) }}" method="POST">
                                     @csrf
@@ -125,6 +125,8 @@
                                 </form>
                             @else
                             @endif
+                            <p>{{$user_comment[0]->comment_content}}</p>
+                            
                             <br>
                         
                         </div>
