@@ -14,7 +14,12 @@
                     <a href="{{url("/perfil/".$user->id)}}"><img class="img-fluid rounded-circle align-baseline" style="width:50px!important;" src="{{url($user->profile_photo_path)}}" alt="..." /></a>
                     <div class="ms-3">
                         <div class="fw-bold"><a class="text-white" href="{{url("/perfil/".$user->id)}}">{{$user->name}}</a></div>
-                        <div class="text-muted">{{$user->about_you}}</div>
+                        <div class="text-muted">
+                            @if (strlen($user->about_you)>15)
+                        {{substr($user->about_you,0,15)}}...
+                      @else
+                        {{$user->about_you}}
+                      @endif</div>
                     </div>
                 </div>
             </div>
