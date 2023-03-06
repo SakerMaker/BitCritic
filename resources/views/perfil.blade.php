@@ -23,8 +23,8 @@
               @endif
               </div>
               <div class="ms-3" style="margin-top: 130px;">
-                <h5>{{$user->name}}</h5>
-                <p><i class="bi bi-geo-alt-fill"></i> {{$user->location}}</p>
+                <h5 style="text-shadow: #000000ab 2px 5px 10px">{{$user->name}}</h5>
+                <p style="text-shadow: #000000ab 2px 5px 10px"><i class="bi bi-geo-alt-fill"></i> {{$user->location}}</p>
               </div>
             </div>
             <div class="p-4 text-black" style="background-color: #f8f9fa;">
