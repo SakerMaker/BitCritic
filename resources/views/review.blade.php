@@ -11,7 +11,7 @@
         <div class="row gx-5">
             <div class="col-lg-3">
                 <div class="d-flex align-items-center mt-lg-5 mb-4">
-                    <a href="{{url("/perfil/".$user->id)}}"><img class="img-fluid rounded-circle align-baseline" style="width:50px!important;" src="{{url($user->profile_photo_path)}}" alt="..." /></a>
+                    <a href="{{url("/perfil/".$user->id)}}"><img class="img-fluid rounded-circle align-baseline" style="width:50px!important;height:50px;object-fit:cover;" src="{{url($user->profile_photo_path)}}" alt="..." /></a>
                     <div class="ms-3">
                         <div class="fw-bold"><a class="text-white" href="{{url("/perfil/".$user->id)}}">{{$user->name}}</a></div>
                         <div class="text-muted">
