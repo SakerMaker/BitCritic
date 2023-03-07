@@ -55,7 +55,7 @@ class GameController extends Controller
 
     public function game($id)
     {
-        $games=Game::find($id);
+        $games=Game::findOrFail($id);
         $reviews=Review::all()->where("id_game","=",$id);
         $users=array();
         foreach ($reviews as $single_review) {
