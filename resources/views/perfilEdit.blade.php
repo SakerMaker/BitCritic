@@ -32,7 +32,7 @@
         <div class="col col-lg-12 col-xl-12">
           <div class="card">
             <div class="rounded-top text-white d-flex" id="output2" style="background: url('{{url($user->banner_photo_path)}}'); height:200px;background-size:cover;background-position:center center;">
-              <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
+              <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;min-height:150px;">
                 <div class="profile-pic img-fluid mt-4 mb-2">
                     <label class="-label" for="file">
                       <span class="glyphicon glyphicon-camera"></span>
