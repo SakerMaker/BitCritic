@@ -22,13 +22,13 @@
                 </div>
               </div>
               <div class="p-4 text-black" style="background-color: #f8f9fa;">
-                <div class="d-flex justify-content-end text-center py-1">
                 @if (Auth::id()==$user->id)
-                  <a href="{{Request::url()."/edit"}}" type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark"
+                  <a href="{{Request::url()."/edit"}}" type="button" class="btn btn-outline-dark mt-2" style="width:150px;" data-mdb-ripple-color="dark"
                     style="z-index: 1;">
                     Editar Perfil
                 </a>
                 @endif
+                <div class="d-flex justify-content-end text-center py-1">
                 <div>
                   <p class="mb-1 h5">{{$reviews}}</p>
                   <p class="small text-muted mb-0">Reviews</p>
