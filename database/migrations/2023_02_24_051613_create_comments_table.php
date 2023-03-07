@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('id_review');
             $table->foreign('id_review')->references('id')->on('reviews')->onDelete('cascade');
-            $table->string('content');
+            $table->string('content',65535);
             $table->timestamps();
         });
     }
