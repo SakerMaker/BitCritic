@@ -22,9 +22,9 @@ class UserSeeder extends Seeder
         $victor=User::create(['name'=>"Víctor",'email'=>"victor@gmail.com",'password'=>Hash::make("adminXDXD"),'location'=>"Italia",'profile_photo_path'=>'img/profileDefault.png','banner_photo_path'=>'img/bannerDefault.png', 'about_you'=>"besto di pesto"]);
         $saker->assignRole('Admin');
         $victor->assignRole('Admin');
-        $usuarios=User::factory(50)->create();
-        for($i=0;$i<count($usuarios);$i++){
-            $usuarios[$i]->assignRole('User');
-        }
+        // $usuarios=User::factory(50)->create();
+        // for($i=0;$i<count($usuarios);$i++){
+        //     $usuarios[$i]->assignRole('User');
+        // }
     }
 }
