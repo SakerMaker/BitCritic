@@ -36,6 +36,10 @@
         }
     },
     "scripts": {
+        "post-install-cmd": [
+            "php artisan ui bootstrap --auth",
+            "npm install && npm run dev"
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
