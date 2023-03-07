@@ -10,25 +10,25 @@
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col col-lg-12 col-xl-12">
           <div class="card">
-            <div class="rounded-top text-white d-flex flex-row" style="background: url('{{url($user->banner_photo_path)}}'); background-size:cover;background-position:center center;">
+            <div class="rounded-top text-white d-flex flex-row" style="background: url('{{url($user->banner_photo_path)}}'); height:200px; background-size:cover;background-position:center center;">
               <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
                 <img src="{{url($user->profile_photo_path)}}"
                   alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
                   style="width: 150px; height:150px;z-index: 1;object-fit:cover;">
-              @if (Auth::id()==$user->id)
-                <a href="{{Request::url()."/edit"}}" type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark"
-                  style="z-index: 1;">
-                  Editar Perfil
-              </a>
-              @endif
+                </div>
+                <div class="ms-3" style="margin-top: 130px;">
+                  <h5 style="text-shadow: #000000ab 2px 5px 10px">{{$user->name}}</h5>
+                  <p style="text-shadow: #000000ab 2px 5px 10px"><i class="bi bi-geo-alt-fill"></i> {{$user->location}}</p>
+                </div>
               </div>
-              <div class="ms-3" style="margin-top: 130px;">
-                <h5 style="text-shadow: #000000ab 2px 5px 10px">{{$user->name}}</h5>
-                <p style="text-shadow: #000000ab 2px 5px 10px"><i class="bi bi-geo-alt-fill"></i> {{$user->location}}</p>
-              </div>
-            </div>
-            <div class="p-4 text-black" style="background-color: #f8f9fa;">
-              <div class="d-flex justify-content-end text-center py-1">
+              <div class="p-4 text-black" style="background-color: #f8f9fa;">
+                <div class="d-flex justify-content-end text-center py-1">
+                @if (Auth::id()==$user->id)
+                  <a href="{{Request::url()."/edit"}}" type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark"
+                    style="z-index: 1;">
+                    Editar Perfil
+                </a>
+                @endif
                 <div>
                   <p class="mb-1 h5">{{$reviews}}</p>
                   <p class="small text-muted mb-0">Reviews</p>
