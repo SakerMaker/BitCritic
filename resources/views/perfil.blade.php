@@ -10,7 +10,7 @@
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col col-lg-12 col-xl-12">
           <div class="card">
-            <div class="rounded-top text-white d-flex flex-row" style="background: url('{{url($user->banner_photo_path)}}'); height:200px; background-size:cover;background-position:center center;">
+            <div class="rounded-top text-white d-flex flex-row" style="background: url('{{url($user->banner_photo_path)}}'); background-size:cover;background-position:center center;">
               <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
                 <img src="{{url($user->profile_photo_path)}}"
                   alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
