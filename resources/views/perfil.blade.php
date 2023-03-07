@@ -11,10 +11,10 @@
         <div class="col col-lg-12 col-xl-12">
           <div class="card">
             <div class="rounded-top text-white d-flex flex-row" style="background: url('{{url($user->banner_photo_path)}}'); height:200px; background-size:cover;background-position:center center;">
-              <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
+              <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;min-height:200px;">
                 <img src="{{url($user->profile_photo_path)}}"
                   alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
-                  style="width: 150px; min-height:200px;z-index: 1;object-fit:cover;">
+                  style="width: 150px; min-height:150px;z-index: 1;object-fit:cover;">
                 </div>
                 <div class="ms-3" style="margin-top: 130px;">
                   <h5 style="text-shadow: #000000ab 2px 5px 10px">{{$user->name}}</h5>
