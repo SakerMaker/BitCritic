@@ -83,7 +83,7 @@ class ReviewController extends Controller
 
     public function show($id)
     {
-        $review = Review::find($id);
+        $review = Review::findOrFail($id);
 
         return view('review.show', compact('review'));
     }

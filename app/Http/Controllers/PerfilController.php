@@ -15,7 +15,7 @@ class PerfilController extends Controller
 {
     public function show($id)
     {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         $comment=$user->comment()->count();
         $reviews=$user->review()->count();
 
