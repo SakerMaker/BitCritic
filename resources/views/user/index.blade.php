@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.panelLayout')
 
 @section('template_title')
     Panel Usuarios
@@ -34,7 +34,7 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
+                                        <th>Id</th>
                                         
 										<th>Name</th>
                                         <th>Email</th>
@@ -49,7 +49,7 @@
                                 <tbody>
                                     @foreach ($users as $user)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
+                                            <td>{{ $user->id }}</td>
                                             
 											<td>{{ $user->name }}</td>
 											<td>{{ $user->email }}</td>

@@ -19,58 +19,6 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
-    {{-- <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'BitCritic - Video Game Reviewing Community') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-                    </ul>
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div> --}}
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
@@ -131,6 +79,22 @@
       </nav>
 
       <main class="main-content-view bg-dark">
+        <section class="bg-dark py-5">
+          <div class="container d-flex justify-content-center align-items-center">
+              <form action="{{ route('users.index') }}" method="GET" class="px-3">
+                  <button type="submit" class="btn btn-primary"><i class="fa fa-fw fa-trash"></i> Users</button>
+              </form>
+              <form action="{{ route('games.panelIndex') }}" method="GET" class="px-3">
+                  <button type="submit" class="btn btn-primary"><i class="fa fa-fw fa-trash"></i> Games</button>
+              </form>
+              <form action="{{ route('reviews.index') }}" method="GET" class="px-3">
+                  <button type="submit" class="btn btn-primary"><i class="fa fa-fw fa-trash"></i> Reviews</button>
+              </form>
+              <form action="{{ route('comments.index') }}" method="GET" class="px-3">
+                  <button type="submit" class="btn btn-primary"><i class="fa fa-fw fa-trash"></i> Comments</button>
+              </form>
+          </div>
+      </section>
         <section class="bg-dark">
             <div class="container">
         @yield('content')
