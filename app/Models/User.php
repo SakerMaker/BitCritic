@@ -23,7 +23,6 @@ class User extends Authenticatable
 		'email' => 'required',
         'password' => 'required',
         'location' => 'required',
-        'about_you' => 'required',
     ];
    
 

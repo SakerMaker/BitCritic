@@ -17,10 +17,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        //Creacion de 50 cabros(contraseña="jejejeje") y 1 admin(contraseña="adminXDXD")
-        // $usuarios=User::factory(50)->create();
-        // for($i=0;$i<count($usuarios);$i++){
-        //     $usuarios[$i]->assignRole('User');
-        // }
+       
     }
 }
